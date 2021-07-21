@@ -1,13 +1,13 @@
-import { Schema, model } from "mongoose";
-import IBus from '../types/bus.types';
-
-enum busType {
-    ac = 'ac',
-    luxory = 'luxory',
-    sleeper = 'sleeper'
-}
-
-const busSchema = new Schema({
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const mongoose_1 = require("mongoose");
+var busType;
+(function (busType) {
+    busType["ac"] = "ac";
+    busType["luxory"] = "luxory";
+    busType["sleeper"] = "sleeper";
+})(busType || (busType = {}));
+const busSchema = new mongoose_1.Schema({
     // companyName: {
     //     type: Schema.Types.ObjectId,
     //     ref: 'user',
@@ -15,7 +15,7 @@ const busSchema = new Schema({
     // },
     price: [
         {
-            type: Schema.Types.ObjectId,
+            type: mongoose_1.Schema.Types.ObjectId,
             ref: 'price',
             required: true
         }
@@ -26,7 +26,7 @@ const busSchema = new Schema({
     },
     startTime: {
         type: String,
-        required: true   
+        required: true
     },
     endTime: {
         type: String,
@@ -45,12 +45,9 @@ const busSchema = new Schema({
             type: String
         }
     ]
-},
-{
+}, {
     timestamps: true,
     versionKey: false
 });
-
-const Bus = model<IBus>('bus', busSchema);
-
-export default Bus;
+const Bus = mongoose_1.model('bus', busSchema);
+exports.default = Bus;
