@@ -8,11 +8,11 @@ enum busType {
 }
 
 const busSchema = new Schema({
-    // companyName: {
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'user',
-    //     required: true
-    // },
+    companyName: {
+        type: Schema.Types.ObjectId,
+        ref: 'user',
+        required: true
+    },
     price: [
         {
             type: Schema.Types.ObjectId,
@@ -21,7 +21,8 @@ const busSchema = new Schema({
         }
     ],
     busType: {
-        type: busType,
+        type: String,
+        enum: Object.values(busType),
         required: true
     },
     startTime: {

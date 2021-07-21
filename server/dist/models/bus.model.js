@@ -8,11 +8,11 @@ var busType;
     busType["sleeper"] = "sleeper";
 })(busType || (busType = {}));
 const busSchema = new mongoose_1.Schema({
-    // companyName: {
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'user',
-    //     required: true
-    // },
+    companyName: {
+        type: mongoose_1.Schema.Types.ObjectId,
+        ref: 'user',
+        required: true
+    },
     price: [
         {
             type: mongoose_1.Schema.Types.ObjectId,
@@ -21,7 +21,8 @@ const busSchema = new mongoose_1.Schema({
         }
     ],
     busType: {
-        type: busType,
+        type: String,
+        enum: Object.values(busType),
         required: true
     },
     startTime: {

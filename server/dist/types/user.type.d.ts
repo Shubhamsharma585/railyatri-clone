@@ -4,7 +4,7 @@ export default interface IUser {
     lastName: string;
     password: string;
     phone: Number | string;
-    email: string,
+    email: string;
     companyName: string;
     role: string;
     isModified: boolean | any;
