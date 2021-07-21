@@ -15,6 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const bus_model_1 = __importDefault(require("../models/bus.model"));
 const price_model_1 = __importDefault(require("../models/price.model"));
+const protect_1 = __importDefault(require("../middlewares/protect"));
+const authorise_1 = __importDefault(require("../middlewares/authorise"));
 const router = express_1.default();
 router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -34,7 +36,7 @@ router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         });
     }
 }));
-router.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.post('/', protect_1.default, authorise_1.default(["admin", "owner"]), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const inpPrice = req.body.price;
         const price = yield price_model_1.default.create(inpPrice);
@@ -51,7 +53,7 @@ router.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         });
     }
 }));
-router.patch('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.patch('/:id', protect_1.default, authorise_1.default(["admin", "owner"]), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const id = req.params.id;
         const updatedBusDetails = yield bus_model_1.default.findByIdAndUpdate(id, Object.assign({}, req.body), { new: true });
@@ -67,11 +69,12 @@ router.patch('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* (
         });
     }
 }));
-router.patch('/:id/price', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.patch('/:id/price', protect_1.default, authorise_1.default(["admin", "owner"]), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const id = req.params.id;
         const busDetail = yield bus_model_1.default.findById(id).lean().exec();
-        const updatedPrice = yield price_model_1.default.findByIdAndUpdate(busDetail === null || busDetail === void 0 ? void 0 : busDetail.price, Object.assign({}, req.body), { new: true });
+        console.log(busDetail);
+        const updatedPrice = yield price_model_1.default.findByIdAndUpdate(busDetail === null || busDetail === void 0 ? void 0 : busDetail.price, ...req.body, { new: true });
         res.status(201).json({
             status: 'success',
             price: updatedPrice
@@ -84,7 +87,7 @@ router.patch('/:id/price', (req, res) => __awaiter(void 0, void 0, void 0, funct
         });
     }
 }));
-router.delete('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.delete('/:id', protect_1.default, authorise_1.default(["admin", "owner"]), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const id = req.params.id;
         const busDetail = yield bus_model_1.default.findById(id).lean().exec();

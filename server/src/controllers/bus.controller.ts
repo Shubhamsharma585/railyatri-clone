@@ -4,6 +4,8 @@ import Bus from '../models/bus.model';
 import Price from '../models/price.model';
 import IBus from '../types/bus.types';
 import IPrice from '../types/price.types';
+import protect from '../middlewares/protect';
+import authorize from '../middlewares/authorise';
 
 const router = express();
 
@@ -29,7 +31,7 @@ router.get('/', async(req: Request | any, res: Response)=>{
     }
 });
 
-router.post('/', async(req: Request, res: Response)=>{
+router.post('/', protect, authorize(["admin", "owner"]), async(req: Request, res: Response)=>{
     try {
         const inpPrice: IPrice = req.body.price;
 
@@ -50,7 +52,7 @@ router.post('/', async(req: Request, res: Response)=>{
     }
 });
 
-router.patch('/:id', async(req: Request, res: Response)=>{
+router.patch('/:id', protect, authorize(["admin", "owner"]), async(req: Request, res: Response)=>{
     try {
         const id: string = req.params.id;
         
@@ -69,7 +71,7 @@ router.patch('/:id', async(req: Request, res: Response)=>{
     }
 })
 
-router.patch('/:id/price', async(req: Request, res: Response)=>{
+router.patch('/:id/price', protect, authorize(["admin", "owner"]), async(req: Request, res: Response)=>{
     try {
         const id: string = req.params.id;
 
@@ -91,7 +93,7 @@ router.patch('/:id/price', async(req: Request, res: Response)=>{
     }
 });
 
-router.delete('/:id', async(req: Request, res: Response)=>{
+router.delete('/:id', protect, authorize(["admin", "owner"]), async(req: Request, res: Response)=>{
     try {
         const id: string = req.params.id;
 
