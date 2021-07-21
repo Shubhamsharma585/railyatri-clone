@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import { Request, Response } from 'express';
 
 import User from '../models/user.model';
-import IUser from '../types/user.type';
+import IUser from '../types/user.types';
 
 const secretKey = process.env.JWT_SECRET_KEY || '';
 

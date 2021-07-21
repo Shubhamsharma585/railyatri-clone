@@ -51,4 +51,55 @@ router.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         });
     }
 }));
+router.patch('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const id = req.params.id;
+        const updatedBusDetails = yield bus_model_1.default.findByIdAndUpdate(id, Object.assign({}, req.body), { new: true });
+        res.status(201).json({
+            status: 'success',
+            bus: updatedBusDetails
+        });
+    }
+    catch (err) {
+        res.status(400).json({
+            status: 'failure',
+            message: err.message
+        });
+    }
+}));
+router.patch('/:id/price', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const id = req.params.id;
+        const busDetail = yield bus_model_1.default.findById(id).lean().exec();
+        const updatedPrice = yield price_model_1.default.findByIdAndUpdate(busDetail === null || busDetail === void 0 ? void 0 : busDetail.price, Object.assign({}, req.body), { new: true });
+        res.status(201).json({
+            status: 'success',
+            price: updatedPrice
+        });
+    }
+    catch (err) {
+        res.status(400).json({
+            status: 'failure',
+            message: err.message
+        });
+    }
+}));
+router.delete('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const id = req.params.id;
+        const busDetail = yield bus_model_1.default.findById(id).lean().exec();
+        yield price_model_1.default.findByIdAndDelete(busDetail === null || busDetail === void 0 ? void 0 : busDetail.price);
+        yield bus_model_1.default.findByIdAndDelete(id);
+        res.status(200).json({
+            status: 'success',
+            message: 'deleted successfully'
+        });
+    }
+    catch (err) {
+        res.status(400).json({
+            status: 'failure',
+            message: err.message
+        });
+    }
+}));
 exports.default = router;

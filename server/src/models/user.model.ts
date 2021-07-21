@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose';
 import bcrypt from 'bcrypt'; 
 
-import IUser from '../types/user.type';
+import IUser from '../types/user.types';
 
 enum roles {
     admin = "admin",
@@ -18,8 +18,8 @@ const userSchema = new Schema ({
     },
     phone: {
         type: String,
-        maxLength: 10,
-        minLength: 10
+        minLength: 10,
+        maxLength: 10
     },
     email: {
         type: String,

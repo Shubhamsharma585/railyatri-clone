@@ -1,3 +1,5 @@
+import IPrice from "./price.types";
+
 enum busType {
     ac,
     luxory,
@@ -7,7 +9,7 @@ enum busType {
 export default interface IBus {
     companyName: string;
     bustype: busType,
-    price: Number[],
+    price: IPrice,
     startTime: string;
     endTime: string;
     originCity: string;

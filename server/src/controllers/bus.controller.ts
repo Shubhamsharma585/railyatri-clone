@@ -14,7 +14,7 @@ router.get('/', async(req: Request | any, res: Response)=>{
 
         const offset = (page - 1) * limit;
 
-        const buses = await Bus.find().populate('price').skip(offset).limit(limit).lean().exec();
+        const buses: IBus[] = await Bus.find().populate('price').skip(offset).limit(limit).lean().exec();
 
         res.status(200).json({
             status: 'success',
@@ -35,7 +35,7 @@ router.post('/', async(req: Request, res: Response)=>{
 
         const price: IPrice = await Price.create(inpPrice);
 
-        const busDetail = await Bus.create({...req.body, price: price._id});
+        const busDetail: IBus = await Bus.create({...req.body, price: price._id});
 
         res.status(201).json({
             status: 'success',
@@ -49,5 +49,69 @@ router.post('/', async(req: Request, res: Response)=>{
         });
     }
 });
+
+router.patch('/:id', async(req: Request, res: Response)=>{
+    try {
+        const id: string = req.params.id;
+        
+        const updatedBusDetails = await Bus.findByIdAndUpdate(id, {...req.body}, {new: true});
+
+        res.status(201).json({
+            status: 'success',
+            bus: updatedBusDetails
+        });
+    }
+    catch (err) {
+        res.status(400).json({
+            status: 'failure',
+            message: err.message
+        });
+    }
+})
+
+router.patch('/:id/price', async(req: Request, res: Response)=>{
+    try {
+        const id: string = req.params.id;
+
+        const busDetail: IBus | null = await Bus.findById(id).lean().exec();
+        console.log(busDetail)
+
+        const updatedPrice = await Price.findByIdAndUpdate(busDetail?.price, ...req.body, {new: true})
+
+        res.status(201).json({
+            status: 'success',
+            price: updatedPrice
+        });
+    }
+    catch (err) {
+        res.status(400).json({
+            status: 'failure',
+            message: err.message
+        });
+    }
+});
+
+router.delete('/:id', async(req: Request, res: Response)=>{
+    try {
+        const id: string = req.params.id;
+
+        const busDetail: IBus | null = await Bus.findById(id).lean().exec();
+
+        await Price.findByIdAndDelete(busDetail?.price);
+
+        await Bus.findByIdAndDelete(id);
+
+        res.status(200).json({
+            status: 'success',
+            message: 'deleted successfully'
+        });
+    }
+    catch (err) {
+        res.status(400).json({
+            status: 'failure',
+            message: err.message
+        });
+    }
+})
 
 export default router;

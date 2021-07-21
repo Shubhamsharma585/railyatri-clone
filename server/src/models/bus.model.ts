@@ -13,13 +13,11 @@ const busSchema = new Schema({
         ref: 'user',
         required: true
     },
-    price: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'price',
-            required: true
-        }
-    ],
+    price: {
+        type: Schema.Types.ObjectId,
+        ref: 'price',
+        required: true
+    },
     busType: {
         type: String,
         enum: Object.values(busType),

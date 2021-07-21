@@ -13,13 +13,11 @@ const busSchema = new mongoose_1.Schema({
         ref: 'user',
         required: true
     },
-    price: [
-        {
-            type: mongoose_1.Schema.Types.ObjectId,
-            ref: 'price',
-            required: true
-        }
-    ],
+    price: {
+        type: mongoose_1.Schema.Types.ObjectId,
+        ref: 'price',
+        required: true
+    },
     busType: {
         type: String,
         enum: Object.values(busType),
