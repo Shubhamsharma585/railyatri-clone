@@ -1,0 +1,12 @@
+
+
+.main
+{
+    height: 70px;
+    width: 95%;
+    border: 0px solid black;
+    border-radius: 10px;
+    margin: auto;
+    background-color: white;
+    box-shadow: 1px 0px 2px 1px rgb(150, 149, 149);
+}
