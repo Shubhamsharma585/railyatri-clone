@@ -15,6 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const bus_model_1 = __importDefault(require("../models/bus.model"));
 const price_model_1 = __importDefault(require("../models/price.model"));
+const protect_1 = __importDefault(require("../middlewares/protect"));
+const authorise_1 = __importDefault(require("../middlewares/authorise"));
 const router = express_1.default();
 router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -34,7 +36,7 @@ router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         });
     }
 }));
-router.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.post('/', protect_1.default, authorise_1.default(["admin", "owner"]), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const inpPrice = req.body.price;
         const price = yield price_model_1.default.create(inpPrice);
@@ -42,6 +44,58 @@ router.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.status(201).json({
             status: 'success',
             bus: busDetail
+        });
+    }
+    catch (err) {
+        res.status(400).json({
+            status: 'failure',
+            message: err.message
+        });
+    }
+}));
+router.patch('/:id', protect_1.default, authorise_1.default(["admin", "owner"]), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const id = req.params.id;
+        const updatedBusDetails = yield bus_model_1.default.findByIdAndUpdate(id, Object.assign({}, req.body), { new: true });
+        res.status(201).json({
+            status: 'success',
+            bus: updatedBusDetails
+        });
+    }
+    catch (err) {
+        res.status(400).json({
+            status: 'failure',
+            message: err.message
+        });
+    }
+}));
+router.patch('/:id/price', protect_1.default, authorise_1.default(["admin", "owner"]), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const id = req.params.id;
+        const busDetail = yield bus_model_1.default.findById(id).lean().exec();
+        console.log(busDetail);
+        const updatedPrice = yield price_model_1.default.findByIdAndUpdate(busDetail === null || busDetail === void 0 ? void 0 : busDetail.price, ...req.body, { new: true });
+        res.status(201).json({
+            status: 'success',
+            price: updatedPrice
+        });
+    }
+    catch (err) {
+        res.status(400).json({
+            status: 'failure',
+            message: err.message
+        });
+    }
+}));
+router.delete('/:id', protect_1.default, authorise_1.default(["admin", "owner"]), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const id = req.params.id;
+        const busDetail = yield bus_model_1.default.findById(id).lean().exec();
+        yield price_model_1.default.findByIdAndDelete(busDetail === null || busDetail === void 0 ? void 0 : busDetail.price);
+        yield bus_model_1.default.findByIdAndDelete(id);
+        res.status(200).json({
+            status: 'success',
+            message: 'deleted successfully'
         });
     }
     catch (err) {
