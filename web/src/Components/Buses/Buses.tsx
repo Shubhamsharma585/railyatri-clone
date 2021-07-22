@@ -9,11 +9,16 @@ function Buses() {
 
 
     var n = 45;
+    var sta="Jaipur"
+    var end="Delhi"
+
     var cat = ["AC", "SLEEPER"]
-    var desti="mumbai"
-    var duration="5hrs"
-    var origintime="5654"
-    var destitime="566"
+    var desti="Gopal Wadi"
+    var origin="Ganesh Pet"
+    var durationh="44"
+    var durationm="25"
+    var origintime="21:00"
+    var destitime="17:25"
     var price="100"
 
 
@@ -21,9 +26,24 @@ function Buses() {
     return (
         <div>
 
-            <br/><br/><br/><br/>
+            <div className={Styles.logo}>
+           <div className={Styles.logo1}>
+               <div style={{margin:"25px", marginLeft:"50px"}}> <img src="https://www.railyatri.in/_next/image?url=https%3A%2F%2Fimages.railyatri.in%2Fry_images_prod%2FIC-LogoHorizontal2x-min-1611241993.png&w=320&q=75" alt="logo" width="290px" height="30px"/>
+               </div>          
+             <div className={Styles.logo12}>
+                 <p>Bus Tickets</p>
+                 <p>Get Free Rides</p>
+                 <div className={Styles.signin}> <img src="https://www.railyatri.in/_next/image?url=https%3A%2F%2Fimages.railyatri.in%2Fry_images_prod%2Favatar-1594795644.png&w=32&q=75" height="20px" alt="avtr" /><p style={{marginTop:"0px", marginLeft:"10px"}}>Sign In</p></div>
+             </div>
+           </div>
+           <div className={Styles.logo2}>
+               <p>Home</p>
+               <p>Bus Booking</p>
+               <p style={{border:"0px", color:"black"}}>{`${sta} To ${end} Buses`}</p>
+           </div>
+            </div>
             <div className={Styles.search}>
-                 <Searchbar/>
+               <Searchbar/>
             </div>
            
 
@@ -64,7 +84,8 @@ function Buses() {
                        catg={cat}
                        origin={origin}
                        desti={desti}
-                       duration={duration}
+                       durationh={durationh}
+                       durationm={durationm}
                        origintime={origintime}
                        destitime={destitime}
                        price={price}
@@ -72,21 +93,47 @@ function Buses() {
                        />
                        <BuseCard 
                        
-                       company="erere" 
+                       company="Tyughgjghjgjh" 
                        catg={cat}
                        origin={origin}
                        desti={desti}
-                       duration={duration}
+                       durationh={durationh}
+                       durationm={durationm}
                        origintime={origintime}
                        destitime={destitime}
                        price={price}
                        seatAvail={"7"}/>
                        <BuseCard 
-                       company="erere" 
+                       company="HJKHKJJK HJHKHJK" 
                        catg={cat}
                        origin={origin}
                        desti={desti}
-                       duration={duration}
+                       durationh={durationh}
+                       durationm={durationm}
+                       origintime={origintime}
+                       destitime={destitime}
+                       price={price}
+                       seatAvail={"7"}
+                       />
+                         <BuseCard 
+                       company="HJKHKJJK HJHKHJK" 
+                       catg={cat}
+                       origin={origin}
+                       desti={desti}
+                       durationh={durationh}
+                       durationm={durationm}
+                       origintime={origintime}
+                       destitime={destitime}
+                       price={price}
+                       seatAvail={"7"}
+                       />
+                         <BuseCard 
+                       company="HJKHKJJK HJHKHJK" 
+                       catg={cat}
+                       origin={origin}
+                       desti={desti}
+                       durationh={durationh}
+                       durationm={durationm}
                        origintime={origintime}
                        destitime={destitime}
                        price={price}
