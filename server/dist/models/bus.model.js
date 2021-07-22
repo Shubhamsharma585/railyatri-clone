@@ -23,6 +23,11 @@ const busSchema = new mongoose_1.Schema({
         enum: Object.values(busType),
         required: true
     },
+    seats: {
+        type: mongoose_1.Schema.Types.ObjectId,
+        ref: 'seat',
+        // required: true
+    },
     startTime: {
         type: String,
         required: true
