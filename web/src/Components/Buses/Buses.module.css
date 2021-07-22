@@ -1,0 +1,66 @@
+
+.main
+{
+    background-color: #b8cdef;
+    padding: 50px 50px;
+}
+
+.topadd
+{
+    height: 120px;
+    border: 0px solid black;
+    border-radius: 10px;
+    margin: 20px 0px;
+    background-color: white;
+    box-shadow: 1px 0px 2px 1px rgb(150, 149, 149);
+}
+
+.container
+{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 200px;
+}
+
+.search
+{
+    position: sticky;
+    top:0px;
+    z-index: 1;
+}
+
+.left
+{
+    height: 550px;
+    width: 30%;
+    margin-right: 3%;
+    border-radius: 10px; 
+    background-color: white;
+    box-shadow: 1px 0px 2px 1px rgb(150, 149, 149);
+    position: sticky;
+    top:100px;
+}
+
+.leftcontainer
+{
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 15px;
+    float: left;
+    justify-content: center;
+    width: 90%;
+    margin: auto;
+    margin-left: 5%;
+    margin-bottom: 30px;
+}
+
+
+.right
+{
+    border: 0px solid black;
+    width: 100%;
+}
+
+.right > h4
+{
+    margin: 0% 80% 0% 0%;
+}

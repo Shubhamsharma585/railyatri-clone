@@ -1,0 +1,23 @@
+
+.box
+{
+    height: 14px;
+    border: 1px solid lightgray;
+    /* width:  fit-content; */
+    min-width: 80px;
+    border-radius: 8px;
+    padding: 4px 10px 10px 10px;
+    margin: 5px 5px;
+    vertical-align: middle;
+    justify-content:space-around;
+    text-align: center;
+    float: left;
+}
+
+.box>p
+{
+   color: gray;
+   font-weight: 400;
+   margin: 0px 0px;
+   font-size: 14px;
+}
