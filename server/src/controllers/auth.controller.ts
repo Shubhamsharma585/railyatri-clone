@@ -77,5 +77,6 @@ const login = async (req: Request, res: Response)=>{
 
 export {
     register,
-    login
+    login,
+    newToken
 }
