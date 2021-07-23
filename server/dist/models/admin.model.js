@@ -7,11 +7,9 @@ const mongoose_1 = require("mongoose");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 var roles;
 (function (roles) {
-    roles["admin"] = "admin";
     roles["owner"] = "owner";
-    roles["user"] = "user";
 })(roles || (roles = {}));
-const userSchema = new mongoose_1.Schema({
+const adminSchema = new mongoose_1.Schema({
     firstName: {
         type: String
     },
@@ -29,25 +27,17 @@ const userSchema = new mongoose_1.Schema({
     password: {
         type: String
     },
-    companyName: {
-        type: String,
-        default: 'NA'
-    },
-    tickets: {
-        type: mongoose_1.Schema.Types.ObjectId,
-        ref: 'ticket',
-    },
     role: {
         type: String,
         enum: Object.values(roles),
-        default: 'user',
+        default: 'owner',
         required: true
     }
 }, {
     timestamps: true,
     versionKey: false
 });
-userSchema.pre('save', function (next) {
+adminSchema.pre('save', function (next) {
     if (!this.isModified('password'))
         return next;
     bcrypt_1.default.hash(this.password, 8, (err, hash) => {
@@ -57,7 +47,7 @@ userSchema.pre('save', function (next) {
         next();
     });
 });
-userSchema.methods.checkPassword = function (password) {
+adminSchema.methods.checkPassword = function (password) {
     const hashedPassword = this.password;
     return new Promise((resolve, reject) => {
         bcrypt_1.default.compare(password, hashedPassword, (err, same) => {
@@ -67,5 +57,5 @@ userSchema.methods.checkPassword = function (password) {
         });
     });
 };
-const User = mongoose_1.model('user', userSchema);
-exports.default = User;
+const Admin = mongoose_1.model('admin', adminSchema);
+exports.default = Admin;
