@@ -6,5 +6,149 @@
     border-radius: 10px;
     margin: 20px 0px;
     background-color: white;
+    padding-top: 10px;
     box-shadow: 1px 0px 2px 1px rgb(150, 149, 149);
+}
+
+
+.mainleft
+{
+    border: 0px solid black;
+    text-align: left;
+    padding-top: 0px;
+    width: 30%;
+}
+.mainmid
+{
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+    padding-top: 0px;
+    width: 40%;
+}
+.mainmid1
+{
+   justify-content: space-between;   
+   margin-bottom: 0px;
+}
+.mainmid1>p
+{
+   margin-bottom: 10px;
+}
+.mainmid1time
+{
+    font-weight: 600;
+    font-size: 20px;
+}
+.mainmid2time
+{
+    font-weight: 400;
+    font-size: 14px;
+    margin-left: 15%;
+    margin-right: 15%;
+    color: grey;
+}
+.mainmid2
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 0px;
+    padding-top: 0px;
+}
+.mainmid2>p
+{
+    margin-left: 35px;
+    margin-top: 0px;
+    margin-bottom: 2px;
+    margin-right: 35px;
+    font-size: 16px;
+}
+.mainmid3
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 0px;
+    padding-top: 0px;
+}
+.mainmid3>p
+{
+    margin-left: 35px;
+    margin-top: 0px;
+    padding-top: 0px;
+    margin-right: 35px;
+    font-size: 12px;
+    color: #0475e5;
+}
+.mainright
+{
+    border: 0px solid black;
+    padding-top: 15px;
+    width: 15%;
+    margin-left: 0px;
+    text-align: right;
+}
+.mainright1
+{
+    color: #74b202;
+    font-weight: 600;
+    font-size: 14px;
+}
+.mainright2
+{
+    color: gray;   
+    background-image: linear-gradient(to right top, transparent 45%, rgb(255, 75, 75) 50%, rgb(255, 75, 75) 0px, transparent 55%);
+}
+.mainright3
+{
+    font-size: 20px;
+    font-weight: 600;
+}
+.mainright4
+{
+    font-weight: 600;
+}
+.mainright5
+{
+    color: gray;
+    font-size: 14px;
+}
+.tagm
+{
+    margin-top: 0px;
+    margin-bottom: 4px;
+}
+
+.select
+{
+   background-color: #74b202;
+   border-radius: 6px;
+   width: 170px;
+   padding-top: 10px;
+   height: 32px;
+   margin-left: 40%;
+   cursor: pointer;
+}
+
+.select>p
+{
+    color: white;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-weight: 600;
+    font-size: 18px;   
+}
+
+.tag
+{
+  color: gray;
+  margin-left: 2%;
+  padding-right: 10px;
+  border-right: 1px solid lightgray;
+}
+
+.hr1
+{
+   border-top: 0px solid lightgray; 
+   border-bottom: 1px solid lightgray;
 }

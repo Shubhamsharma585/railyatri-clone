@@ -8,10 +8,13 @@ export default function Routes() {
         <div>
             <Switch>
                 <Route exact path="/">
-                <Buses />
+                    <Buses />
                 </Route>
                 <Route path="/bus-booking">
                     <LandingPage />
+                </Route>
+                <Route path="/search" exact>
+                    <Buses />
                 </Route>
             </Switch>
         </div>

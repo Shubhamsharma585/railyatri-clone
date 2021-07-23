@@ -12,6 +12,7 @@
     justify-content:space-around;
     text-align: center;
     float: left;
+    cursor: pointer;
 }
 
 .box>p
