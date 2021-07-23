@@ -48,9 +48,10 @@ router.post('/', protect_1.default, authorise_1.default(["admin", "owner"]), (re
     try {
         const inpPrice = req.body.price;
         let seats = req.body.seats;
-        const seatType = seats.seatType;
-        const seatTypeRegister = yield seatType_model_1.default.create(seatType);
-        seats = Object.assign(Object.assign({}, seats), { seatTypeId: seatTypeRegister._id });
+        let seatType = seats.seatTypeId;
+        let seatTypeId = yield seatType_model_1.default.create(seatType);
+        seatTypeId = seatTypeId.map(item => item._id);
+        seats = Object.assign(Object.assign({}, seats), { seatTypeId });
         const price = yield price_model_1.default.create(inpPrice);
         const busDetail = yield bus_model_1.default.create(Object.assign(Object.assign({}, req.body), { priceId: price._id, seats }));
         res.status(201).json({
@@ -61,10 +62,12 @@ router.post('/', protect_1.default, authorise_1.default(["admin", "owner"]), (re
     catch (err) {
         res.status(400).json({
             status: 'failure',
-            message: err.message
+            message: err.message,
+            err
         });
     }
 }));
+// edit bus details except price
 router.patch('/:id', protect_1.default, authorise_1.default(["admin", "owner"]), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const id = req.params.id;
@@ -81,11 +84,12 @@ router.patch('/:id', protect_1.default, authorise_1.default(["admin", "owner"]),
         });
     }
 }));
+// edit price
 router.patch('/:id/price', protect_1.default, authorise_1.default(["admin", "owner"]), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const id = req.params.id;
         const busDetail = yield bus_model_1.default.findById(id).lean().exec();
-        const updatedPrice = yield price_model_1.default.findByIdAndUpdate(busDetail === null || busDetail === void 0 ? void 0 : busDetail.price, ...req.body, { new: true });
+        const updatedPrice = yield price_model_1.default.findByIdAndUpdate(busDetail === null || busDetail === void 0 ? void 0 : busDetail.priceId, ...req.body, { new: true });
         res.status(201).json({
             status: 'success',
             price: updatedPrice
@@ -98,11 +102,17 @@ router.patch('/:id/price', protect_1.default, authorise_1.default(["admin", "own
         });
     }
 }));
+//edit seatType
+router.patch('/:id/seat', protect_1.default, authorise_1.default(["admin", "owner"]), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+}));
 router.delete('/:id', protect_1.default, authorise_1.default(["admin", "owner"]), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
     try {
         const id = req.params.id;
         const busDetail = yield bus_model_1.default.findById(id).lean().exec();
-        yield price_model_1.default.findByIdAndDelete(busDetail === null || busDetail === void 0 ? void 0 : busDetail.price);
+        yield price_model_1.default.findByIdAndDelete(busDetail === null || busDetail === void 0 ? void 0 : busDetail.priceId);
+        let seatTypeId = (_a = busDetail === null || busDetail === void 0 ? void 0 : busDetail.seats) === null || _a === void 0 ? void 0 : _a.seatTypeId;
+        seatTypeId === null || seatTypeId === void 0 ? void 0 : seatTypeId.map((item) => __awaiter(void 0, void 0, void 0, function* () { return yield seatType_model_1.default.findByIdAndDelete(item); }));
         yield bus_model_1.default.findByIdAndDelete(id);
         res.status(200).json({
             status: 'success',

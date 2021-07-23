@@ -4,14 +4,20 @@ declare enum busType {
     luxory = 1,
     sleeper = 2
 }
+interface ISeatTypeId {
+    totalSeats: number;
+    seatsBooked: number;
+    seatTypeId: string[];
+}
 export default interface IBus {
-    companyName: string;
+    companyNameId: string;
     bustype: busType;
-    price: IPrice;
+    priceId: IPrice;
     startTime: string;
     endTime: string;
     originCity: string;
     destinationCity: string;
     gallery: string[];
+    seats: ISeatTypeId;
 }
 export {};

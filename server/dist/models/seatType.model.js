@@ -12,6 +12,11 @@ var seatBerth;
     seatBerth["upper"] = "upper";
     seatBerth["lower"] = "lower";
 })(seatBerth || (seatBerth = {}));
+var seatType;
+(function (seatType) {
+    seatType["sleeper"] = "sleeper";
+    seatType["sitting"] = "sitting";
+})(seatType || (seatType = {}));
 const seatTypeSchema = new mongoose_1.Schema({
     seatNumber: {
         type: String || Number,
@@ -27,7 +32,15 @@ const seatTypeSchema = new mongoose_1.Schema({
         type: String,
         enum: Object.values(seatBerth),
         required: true
+    },
+    seatType: {
+        type: String,
+        enum: Object.values(seatType),
+        required: true
     }
+}, {
+    timestamps: true,
+    versionKey: false
 });
 const SeatType = mongoose_1.model('seatType', seatTypeSchema);
 exports.default = SeatType;

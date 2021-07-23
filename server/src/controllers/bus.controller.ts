@@ -46,11 +46,13 @@ router.post('/', protect, authorize(["admin", "owner"]), async(req: Request, res
         const inpPrice: IPrice = req.body.price;
         let seats = req.body.seats;
 
-        const seatType: ISeatTypes = seats.seatType;
+        let seatType: ISeatTypes[] = seats.seatTypeId;
 
-        const seatTypeRegister = await SeatType.create(seatType);
+        let seatTypeId = await SeatType.create(seatType);
+        seatTypeId = seatTypeId.map(item=> item._id)
 
-        seats = {...seats, seatTypeId: seatTypeRegister._id};
+        seats = {...seats, seatTypeId};
+
         const price: IPrice = await Price.create(inpPrice);
 
         const busDetail: IBus = await Bus.create({...req.body, priceId: price._id, seats});
@@ -63,10 +65,13 @@ router.post('/', protect, authorize(["admin", "owner"]), async(req: Request, res
     catch (err) {
         res.status(400).json({
             status: 'failure',
-            message: err.message
+            message: err.message,
+            err
         });
     }
 });
+
+// edit bus details except price
 
 router.patch('/:id', protect, authorize(["admin", "owner"]), async(req: Request, res: Response)=>{
     try {
@@ -87,13 +92,15 @@ router.patch('/:id', protect, authorize(["admin", "owner"]), async(req: Request,
     }
 })
 
+// edit price
+
 router.patch('/:id/price', protect, authorize(["admin", "owner"]), async(req: Request, res: Response)=>{
     try {
         const id: string = req.params.id;
 
         const busDetail: IBus | null = await Bus.findById(id).lean().exec();
 
-        const updatedPrice = await Price.findByIdAndUpdate(busDetail?.price, ...req.body, {new: true})
+        const updatedPrice = await Price.findByIdAndUpdate(busDetail?.priceId, ...req.body, {new: true})
 
         res.status(201).json({
             status: 'success',
@@ -108,13 +115,23 @@ router.patch('/:id/price', protect, authorize(["admin", "owner"]), async(req: Re
     }
 });
 
+//edit seatType
+
+router.patch('/:id/seat', protect, authorize(["admin", "owner"]), async(req: Request, res: Response)=>{
+
+});
+
 router.delete('/:id', protect, authorize(["admin", "owner"]), async(req: Request, res: Response)=>{
     try {
         const id: string = req.params.id;
 
         const busDetail: IBus | null = await Bus.findById(id).lean().exec();
 
-        await Price.findByIdAndDelete(busDetail?.price);
+        await Price.findByIdAndDelete(busDetail?.priceId);
+
+        let seatTypeId = busDetail?.seats?.seatTypeId;
+
+        seatTypeId?.map(async (item: String)=> await SeatType.findByIdAndDelete(item));
 
         await Bus.findByIdAndDelete(id);
 

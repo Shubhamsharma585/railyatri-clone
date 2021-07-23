@@ -32,6 +32,10 @@ const busSchema = new Schema<IBus>({
             type: Number,
             required: true
         },
+        totalSleeperSeats: {
+            type: Number,
+            required: true
+        },
         seatTypeId: [
             {
                 type: Schema.Types.ObjectId,
