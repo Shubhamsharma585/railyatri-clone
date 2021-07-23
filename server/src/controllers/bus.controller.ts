@@ -2,9 +2,11 @@ import express, { Request, Response } from 'express';
 
 import Bus from '../models/bus.model';
 import Price from '../models/price.model';
-import Seat from '../models/seat.model';
+import SeatType from '../models/seatType.model';
+import Ticket from '../models/ticket.model';
 import IBus from '../types/bus.types';
 import IPrice from '../types/price.types';
+import ISeatTypes from '../types/seatType.types';
 import protect from '../middlewares/protect';
 import authorize from '../middlewares/authorise';
 
@@ -17,7 +19,14 @@ router.get('/', async(req: Request | any, res: Response)=>{
 
         const offset = (page - 1) * limit;
 
-        const buses: IBus[] = await Bus.find().populate({path: 'price', select: 'companyName'}).skip(offset).limit(limit).lean().exec();
+        const buses: IBus[] = await Bus.find()
+                                        .populate({path: 'companyNameId', select: 'companyName'})
+                                        .populate('priceId')
+                                        .populate({path: 'seats', populate: 'seatTypeId'})
+                                        .skip(offset)
+                                        .limit(limit)
+                                        .lean()
+                                        .exec();
 
         res.status(200).json({
             status: 'success',
@@ -35,10 +44,16 @@ router.get('/', async(req: Request | any, res: Response)=>{
 router.post('/', protect, authorize(["admin", "owner"]), async(req: Request, res: Response)=>{
     try {
         const inpPrice: IPrice = req.body.price;
+        let seats = req.body.seats;
 
+        const seatType: ISeatTypes = seats.seatType;
+
+        const seatTypeRegister = await SeatType.create(seatType);
+
+        seats = {...seats, seatTypeId: seatTypeRegister._id};
         const price: IPrice = await Price.create(inpPrice);
 
-        const busDetail: IBus = await Bus.create({...req.body, price: price._id});
+        const busDetail: IBus = await Bus.create({...req.body, priceId: price._id, seats});
 
         res.status(201).json({
             status: 'success',

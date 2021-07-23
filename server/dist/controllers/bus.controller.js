@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const bus_model_1 = __importDefault(require("../models/bus.model"));
 const price_model_1 = __importDefault(require("../models/price.model"));
+const seatType_model_1 = __importDefault(require("../models/seatType.model"));
 const protect_1 = __importDefault(require("../middlewares/protect"));
 const authorise_1 = __importDefault(require("../middlewares/authorise"));
 const router = express_1.default();
@@ -23,7 +24,14 @@ router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const page = +req.query.page | 1;
         const limit = +req.query.limit | 10;
         const offset = (page - 1) * limit;
-        const buses = yield bus_model_1.default.find().populate('price').skip(offset).limit(limit).lean().exec();
+        const buses = yield bus_model_1.default.find()
+            .populate({ path: 'companyNameId', select: 'companyName' })
+            .populate('priceId')
+            .populate({ path: 'seats', populate: 'seatTypeId' })
+            .skip(offset)
+            .limit(limit)
+            .lean()
+            .exec();
         res.status(200).json({
             status: 'success',
             buses
@@ -39,8 +47,12 @@ router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 router.post('/', protect_1.default, authorise_1.default(["admin", "owner"]), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const inpPrice = req.body.price;
+        let seats = req.body.seats;
+        const seatType = seats.seatType;
+        const seatTypeRegister = yield seatType_model_1.default.create(seatType);
+        seats = Object.assign(Object.assign({}, seats), { seatTypeId: seatTypeRegister._id });
         const price = yield price_model_1.default.create(inpPrice);
-        const busDetail = yield bus_model_1.default.create(Object.assign(Object.assign({}, req.body), { price: price._id }));
+        const busDetail = yield bus_model_1.default.create(Object.assign(Object.assign({}, req.body), { priceId: price._id, seats }));
         res.status(201).json({
             status: 'success',
             bus: busDetail
@@ -73,7 +85,6 @@ router.patch('/:id/price', protect_1.default, authorise_1.default(["admin", "own
     try {
         const id = req.params.id;
         const busDetail = yield bus_model_1.default.findById(id).lean().exec();
-        console.log(busDetail);
         const updatedPrice = yield price_model_1.default.findByIdAndUpdate(busDetail === null || busDetail === void 0 ? void 0 : busDetail.price, ...req.body, { new: true });
         res.status(201).json({
             status: 'success',

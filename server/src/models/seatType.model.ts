@@ -12,7 +12,7 @@ enum seatBerth {
 
 const seatTypeSchema = new Schema ({
     seatNumber: {
-        type: Number || String,
+        type: String || Number,
         required: true
     },
     seatStatus: {
