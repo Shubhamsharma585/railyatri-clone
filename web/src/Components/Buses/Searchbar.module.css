@@ -7,6 +7,41 @@
     border: 0px solid black;
     border-radius: 10px;
     margin: auto;
-    background-color: white;
+    background-color: #004f9e;
     box-shadow: 1px 0px 2px 1px rgb(150, 149, 149);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.main>input
+{
+    height: 30px;
+    width: 350px;
+    margin: auto;
+    border-radius: 8px;
+    border: 1px solid lightgray;
+    padding-left: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+.main>input:focus
+{
+    outline: 0;
+}
+.search
+{
+    background-color: #4e678f;
+    border-radius: 6px;
+    margin: auto;
+    height: 30px;
+    width: 150px;
+    padding-top: 10px;
+    padding-bottom: 0px;
+    cursor: pointer;
+}
+.search>p
+{
+  color: #b8cdef;
+  margin: 0px;
+  font-weight: 700;
 }

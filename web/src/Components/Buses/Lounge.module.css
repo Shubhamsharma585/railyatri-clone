@@ -1,0 +1,99 @@
+
+
+.main
+{
+    background-color: white;
+    border-radius: 10px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.one
+{
+   border: 0px solid black;
+   border-top-left-radius: 10px;
+   border-bottom-left-radius: 10px;
+   width: 370px;
+   background: url("https://images.railyatri.in/ry_images_prod/201910211158242x-1-1597046946.png");
+}
+.one2
+{
+  border: 0px solid black; 
+  border-radius: 5px;  
+  height: 25px;
+  width: 100px;
+  background-color: #6ea705;
+  float: left;
+  position: relative;
+  left: -50px;
+  top: 10px;
+}
+.one2>p
+{
+    color: white;
+    margin: auto;
+    margin-top: 3px;
+    font-size: 13px;
+    font-weight: 500;
+}
+.two
+{
+    border: 0px solid black;
+    width: 240px;
+    margin-left: -100px;
+    text-align: left;
+    padding-left: 60px;
+}
+.two>h4
+{
+   margin: 45px 0px 5px 0px;
+}
+.two>p
+{
+   color: gray;
+   font-size: 12px;
+   margin: 0px;
+}
+.thr
+{
+    border: 0px solid black;
+    width: 470px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.thr1
+{
+    border: 0px solid black;
+    width: 120px;
+    padding: 10px 5px;
+}
+.thr1>p
+{
+    color: gray;
+    font-size: 14px;
+}
+.four
+{
+    border: 0px solid #000000;
+    width: 160px;
+    display: flex;
+    flex-direction: row;
+    padding-top: 30px;
+    padding-left: 20px;
+}
+.four>p{
+    color: #0475e5;
+    font-weight: 600;
+    cursor: pointer;
+}
+.fourimg
+{
+    background-color: #0475e5;
+    width: 20px;
+    height: 20px;
+    margin: 10px 0px 0px 5px;
+    padding: 6px 3px 4px 6px;
+    border-radius: 20px;
+    cursor: pointer;
+}
