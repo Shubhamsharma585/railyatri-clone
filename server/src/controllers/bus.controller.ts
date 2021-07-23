@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 
 import Bus from '../models/bus.model';
 import Price from '../models/price.model';
+import Seat from '../models/seat.model';
 import IBus from '../types/bus.types';
 import IPrice from '../types/price.types';
 import protect from '../middlewares/protect';
@@ -16,7 +17,7 @@ router.get('/', async(req: Request | any, res: Response)=>{
 
         const offset = (page - 1) * limit;
 
-        const buses: IBus[] = await Bus.find().populate('price').skip(offset).limit(limit).lean().exec();
+        const buses: IBus[] = await Bus.find().populate({path: 'price', select: 'companyName'}).skip(offset).limit(limit).lean().exec();
 
         res.status(200).json({
             status: 'success',
@@ -76,7 +77,6 @@ router.patch('/:id/price', protect, authorize(["admin", "owner"]), async(req: Re
         const id: string = req.params.id;
 
         const busDetail: IBus | null = await Bus.findById(id).lean().exec();
-        console.log(busDetail)
 
         const updatedPrice = await Price.findByIdAndUpdate(busDetail?.price, ...req.body, {new: true})
 
