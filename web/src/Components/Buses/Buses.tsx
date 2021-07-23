@@ -4,10 +4,12 @@ import BuseStop from "./Busestop"
 import BuseCard from "./Busecard"
 import Searchbar from "./Searchbar"
 import Box from "./Box"
+import Lounge from "./Lounge"
+import Booking from "./Booking"
 
 function Buses() {
 
-
+ 
     var n = 45;
     var sta="Jaipur"
     var end="Delhi"
@@ -49,7 +51,10 @@ function Buses() {
 
             <div className={Styles.main}>
                 <BuseStop/>
-                <div className={Styles.topadd}>Lounge</div>
+                <div className={Styles.topadd}>
+                    <Lounge/>
+                </div>
+
                 <div className={Styles.container} >
                    <div className={Styles.left}>
                       <p style={{textAlign:"left", marginLeft:"15px"}}>Filter Your Search</p>
@@ -139,6 +144,9 @@ function Buses() {
                        price={price}
                        seatAvail={"7"}
                        />
+                       <Booking/>
+
+
                       
                    </div>
                 </div>

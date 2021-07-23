@@ -1,3 +1,4 @@
+import { Style } from '@material-ui/icons'
 import React from 'react'
 import Styles from "./Busecard.module.css"
 
@@ -27,7 +28,7 @@ desti,
 durationh,
 durationm,
 origintime,
-destitime,
+destitime, 
 price,
 seatAvail} : IBusecard) {
 
@@ -57,13 +58,13 @@ seatAvail} : IBusecard) {
             </div>
 
             <div className={Styles.mainright}>
-                <p className={Styles.tagm}><span className={Styles.mainright1}>Savings 50</span> <span className={Styles.mainright2}>{`₹${"2000"}`}</span></p>
+                <p className={Styles.tagm}><span className={Styles.mainright1}>Savings ₹50</span> <span className={Styles.mainright2}>{`₹${"2000"}`}</span></p>
                 <p className={Styles.tagm}><span className={Styles.mainright3}>{`₹${"1950"}`}</span></p>
                 <p className={Styles.tagm}><span className={Styles.mainright4}>10</span> <span className={Styles.mainright5}>Seats Available</span></p>
             </div>
             </div>
             
-            <hr/>
+            <hr className={Styles.hr1}/>
             <div style={{display:"flex", flexDirection:"row"}}>
                <p className={Styles.tag}>Boarding/Dropping Points</p>
                <p className={Styles.tag} style={{borderRight:"0px"}}>Cancellation Policy</p>

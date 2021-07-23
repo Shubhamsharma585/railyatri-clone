@@ -127,6 +127,7 @@
    padding-top: 10px;
    height: 32px;
    margin-left: 40%;
+   cursor: pointer;
 }
 
 .select>p
@@ -144,4 +145,10 @@
   margin-left: 2%;
   padding-right: 10px;
   border-right: 1px solid lightgray;
+}
+
+.hr1
+{
+   border-top: 0px solid lightgray; 
+   border-bottom: 1px solid lightgray;
 }
