@@ -5,7 +5,7 @@ function Home_bus_page() {
     return (
         <div className={style.main_div}>
             <div className={style.inner_div}>
-                <p style={{ textAlign: 'left', fontSize: '12px' }}><span style={{ color: '#0275d8' }}>Home</span><span style={{ color: '#666' }}> | Bus Booking</span></p>
+                <p style={{ textAlign: 'left', fontSize: '12px' }}><span style={{ color: '#0275d8' }}>Home </span><span style={{ color: '#666' }}> |  Bus Booking</span></p>
                 <div style={{ display: "flex" }}>
                     <div className={style.search_form}>
 
@@ -35,7 +35,6 @@ function Home_bus_page() {
                                     <p className={style.p_safe}>COVID health cover for travellers</p>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>

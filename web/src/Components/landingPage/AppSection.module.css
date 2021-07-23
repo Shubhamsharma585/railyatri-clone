@@ -1,0 +1,31 @@
+.Appdiv {
+    background: #004780;
+    color: #fff;
+    margin-top: 0;
+}
+
+.App_div {
+    width: 85%;
+    margin: auto;
+    padding: 70px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn {
+    background-color: #86BC24;
+    width: 152px;
+    margin: 0 auto;
+    font-weight: 500;
+    border-radius: 6px;
+    height: 53px;
+    font-size: 18px;
+    display: block;
+    margin-top: 10px;
+    padding: 10px;
+    color: #fff;
+    border: 0;
+    margin-left: 0;
+    cursor: pointer;
+}
