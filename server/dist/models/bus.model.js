@@ -24,9 +24,21 @@ const busSchema = new mongoose_1.Schema({
         required: true
     },
     seats: {
-        type: mongoose_1.Schema.Types.ObjectId,
-        ref: 'seat',
-        // required: true
+        totalSeats: {
+            type: Number,
+            required: true
+        },
+        seatsBooked: {
+            type: Number,
+            required: true
+        },
+        seatType: [
+            {
+                type: mongoose_1.Schema.Types.ObjectId,
+                ref: 'seatType',
+                required: true
+            }
+        ]
     },
     startTime: {
         type: String,

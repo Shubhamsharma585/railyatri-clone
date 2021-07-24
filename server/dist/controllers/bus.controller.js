@@ -23,7 +23,7 @@ router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const page = +req.query.page | 1;
         const limit = +req.query.limit | 10;
         const offset = (page - 1) * limit;
-        const buses = yield bus_model_1.default.find().populate('price').skip(offset).limit(limit).lean().exec();
+        const buses = yield bus_model_1.default.find().populate({ path: 'price', select: 'companyName' }).skip(offset).limit(limit).lean().exec();
         res.status(200).json({
             status: 'success',
             buses
@@ -73,7 +73,6 @@ router.patch('/:id/price', protect_1.default, authorise_1.default(["admin", "own
     try {
         const id = req.params.id;
         const busDetail = yield bus_model_1.default.findById(id).lean().exec();
-        console.log(busDetail);
         const updatedPrice = yield price_model_1.default.findByIdAndUpdate(busDetail === null || busDetail === void 0 ? void 0 : busDetail.price, ...req.body, { new: true });
         res.status(201).json({
             status: 'success',

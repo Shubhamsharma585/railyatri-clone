@@ -1,4 +1,5 @@
 import React from 'react'
+import Bus_ticket from './Bus_ticket'
 import style from './Home_bus_page.module.css'
 
 function Home_bus_page() {
@@ -8,7 +9,7 @@ function Home_bus_page() {
                 <p style={{ textAlign: 'left', fontSize: '12px' }}><span style={{ color: '#0275d8' }}>Home </span><span style={{ color: '#666' }}> |  Bus Booking</span></p>
                 <div style={{ display: "flex" }}>
                     <div className={style.search_form}>
-
+                        <Bus_ticket />
                     </div>
                     <div>
                         <img className={style.img_bus} src="https://images.railyatri.in/ry_images_prod/Bus-Side-1612249818.png" alt="" />
