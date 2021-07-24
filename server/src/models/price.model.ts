@@ -3,8 +3,7 @@ import IPrice from '../types/price.types'
 
 const priceSchema = new Schema({
     sleeper: Number,
-    luxory: Number,
-    ac: Number,
+    sitting: Number,
 },
 {
     timestamps: true,

@@ -8,12 +8,12 @@ enum busType {
 }
 
 const busSchema = new Schema<IBus>({
-    companyName: {
+    companyNameId: {
         type: Schema.Types.ObjectId,
         ref: 'user',
         required: true
     },
-    price: {
+    priceId: {
         type: Schema.Types.ObjectId,
         ref: 'price',
         required: true
@@ -32,7 +32,11 @@ const busSchema = new Schema<IBus>({
             type: Number,
             required: true
         },
-        seatType: [
+        totalSleeperSeats: {
+            type: Number,
+            required: true
+        },
+        seatTypeId: [
             {
                 type: Schema.Types.ObjectId,
                 ref: 'seatType',
