@@ -3,7 +3,7 @@ import IBus from '../types/bus.types';
 
 enum busType {
     ac = 'ac',
-    luxory = 'luxory',
+    luxory = 'luxory', 
     sleeper = 'sleeper'
 }
 

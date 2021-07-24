@@ -34,7 +34,7 @@ router.get('/', async(req: Request | any, res: Response)=>{
         res.status(200).json({
             status: 'success',
             buses
-        });
+        }); 
     }
     catch (err) {
         res.status(400).json({
