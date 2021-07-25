@@ -1,13 +1,46 @@
-import React from 'react'
+import { BorderBottom } from '@material-ui/icons'
+import React, {useState} from 'react'
 import Styles from "./Booking.module.css"
+import Seat from "./Seat"
+import Sleeper from "./Sleeper"
+
+interface Iseats {
+    num: number,
+    status: string
+}
+interface Ibus {
+    total: number,
+    seats: Iseats[]
+}
+
+interface IBooking
+{
+    origin: string,
+    desti: string,
+    origintime: string,
+    destitime: string,
+    bus: Ibus
+}
 
 
+function Booking({origin, desti, origintime, destitime, bus} :IBooking) {
 
-function Booking() {
-
-
-
-
+ 
+    const [board, setBoard] = useState<boolean>(true)
+    
+    const ori = (sta: boolean): void => {
+        setBoard(sta)
+    }
+    const act = (board: boolean): string => {
+        if(board)
+        {
+           return "#0d98ba"
+        }else
+        {
+            return "lightgray"
+        }
+    }
+ 
     return (
         <div className={Styles.main}>
             <div className={Styles.left}>
@@ -18,7 +51,17 @@ function Booking() {
                       <img src="https://images.railyatri.in/ry_images_prod/steering-1589359175.png" height="32px" alt="x"/>
                       </div>                      
                   </div>
-                  <div className={Styles.leftbox3}></div>
+                  <div className={Styles.leftbox3}>
+                    <Seat numb={1} />
+                    <Seat numb={1}/> 
+                    <Seat numb={1}/>
+                    <Sleeper numb={2}/>
+                    <Seat numb={1}/>
+                    <Sleeper numb={2}/>
+                    <Seat numb={1}/>
+                    <Sleeper numb={2}/>
+                   
+                  </div>
                 </div>
                 <div className={Styles.leftbox}>
                   <div className={Styles.leftbox1}></div>
@@ -26,10 +69,39 @@ function Booking() {
                   <div className={Styles.leftbox21}><p>Upper</p>
                   </div>     
                   </div>
-                  <div className={Styles.leftbox3}></div>
+                  <div className={Styles.leftbox3}>
+
+                  </div>
                 </div>
             </div>
-            <div className={Styles.right}></div>
+            <div className={Styles.right}>
+                <div className={Styles.righttop}>
+                    <div className={Styles.righttopbox} style={{borderBottom:`2px solid ${act(!board)}`}} onClick={() => ori(false)}>
+                        <h4>Boarding Point</h4>
+                        <p>{origin}</p>
+                    </div>
+                    <div className={Styles.righttopbox}  style={{borderBottom:`2px solid ${act(board)}`}} onClick={() => ori(true)}>
+                         <h4>Dropping Point</h4>
+                         <p>{desti}</p>
+                    </div>
+                </div>
+                <div className={Styles.rightbottom}>
+                {!board? (
+                    <div className={Styles.rightbottombox}>
+                        <input type="radio" checked={true} name="" id="" className={Styles.rightbottomcheck}/>
+                        <h4>{origin}</h4>
+                        <p>{origintime}</p>
+                    </div>  
+                ):(
+                    <div className={Styles.rightbottombox}>
+                         <input type="radio" checked={true} name="" id="" className={Styles.rightbottomcheck}/>
+                         <h4>{desti}</h4>
+                         <p>{destitime}</p>
+                    </div>  
+                )}
+
+                </div>
+            </div>
             
         </div>
     )

@@ -31,6 +31,20 @@ function Buses() {
     var destitime="17:25"
     var price="100"
 
+    interface Iseats {
+        num: number,
+        status: string
+    }
+    interface Ibus {
+        total: number,
+        seats: Iseats[]
+    }
+
+    let bus: Ibus
+   bus = {
+        total: 50,
+        seats: [{ num: 1, status: "booked"},{ num: 2, status: "vacant"}]
+    }
 
 
 
@@ -154,7 +168,7 @@ function Buses() {
                        price={price}
                        seatAvail={"7"}
                        />
-                       <Booking/>
+                       <Booking origin={origin} desti={desti} origintime={origintime} destitime={destitime} bus={bus}/>
 
 
                       
