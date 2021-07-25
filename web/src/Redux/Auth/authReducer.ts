@@ -1,7 +1,8 @@
 import { loadData, saveData } from "../../Utils/localstorage";
-import { LOGIN_USER_FAILURE, LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS } from "./actionType";
+import { LOGIN_USER_FAILURE, LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGOUT_USER } from "./actionType";
 
 const isAuth = loadData("auth") || false;
+console.log(isAuth)
 const token = loadData("token") || "";
 
 interface IState {
@@ -20,7 +21,7 @@ const initState: IState = {
     err: ''
 }
 
-const authReducer = (state: IState | undefined= initState, action: any) => {
+const authReducer = (state: IState | any= initState, action: any) => {
     const payload = action?.payload;
 
     switch(action?.type){
@@ -38,8 +39,6 @@ const authReducer = (state: IState | undefined= initState, action: any) => {
             return {
                 isLoading: false,
                 isError: false,
-                isAuth: true,
-                token: payload
             }
         }
 
@@ -49,6 +48,15 @@ const authReducer = (state: IState | undefined= initState, action: any) => {
                 isLoading: false,
                 isAuth: false,
                 err: payload
+            }
+        }
+
+        case LOGOUT_USER: {
+            saveData("isAuth", false);
+            saveData("token", '');
+            return {
+                isLoading: false,
+                isError: false,
             }
         }
 
