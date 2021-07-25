@@ -12,11 +12,12 @@ import {
     CompanyLogo
 } from './SignInElements'
 
-import { auth } from "../../../Utils/Firebase/index";
-import { useHistory } from 'react-router-dom';
+// import { auth } from "../../../Utils/Firebase/index";
+import { Redirect, useHistory } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../Redux/stateHooks';
 import { loginUser } from '../../../Redux/Auth/action';
 import ISignIn from '../../../Types/login.types';
+import { loadData } from '../../../Utils/localstorage';
 
 
 const SignIn = () => {
@@ -32,7 +33,8 @@ const SignIn = () => {
         password
     }
 
-    // const token = useAppSelector(state=> state.auth.token);
+    const isAuth = loadData('isAuth');
+    const err = useAppSelector(state=> state.auth.err);
 
     let Authentication: React.FormEventHandler<HTMLFormElement> = async (e) => {
         e.preventDefault();
@@ -44,8 +46,14 @@ const SignIn = () => {
         // }
 
         dispatch(loginUser(data));
-        
+    }
+
+    if(isAuth){
         history.push('/addBus');
+    }
+
+    if(err){
+        alert('Incorrect email or password.');
     }
 
     return (

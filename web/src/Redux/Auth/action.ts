@@ -51,11 +51,9 @@ export const loginUser = (data: ISignIn)=>(dispacth: any) => {
 
     loginReq(data)
     .then(res=>{
-        console.log(res?.data?.token)
-        dispacth(loginUserSuccess(res?.data?.token));
+        dispacth(loginUserSuccess(res.data.token));
     })
     .catch(err=>{
-        console.log(err)
         dispacth(loginUseFailure(err));
     })
 }

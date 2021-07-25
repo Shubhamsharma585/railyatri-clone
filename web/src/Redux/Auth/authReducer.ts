@@ -2,6 +2,7 @@ import { loadData, saveData } from "../../Utils/localstorage";
 import { LOGIN_USER_FAILURE, LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS } from "./actionType";
 
 const isAuth = loadData("auth") || false;
+console.log(isAuth)
 const token = loadData("token") || "";
 
 interface IState {
@@ -38,8 +39,6 @@ const authReducer = (state: IState | any= initState, action: any) => {
             return {
                 isLoading: false,
                 isError: false,
-                isAuth: true,
-                token: payload
             }
         }
 
