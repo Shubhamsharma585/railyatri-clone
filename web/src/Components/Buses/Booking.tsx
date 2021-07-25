@@ -31,8 +31,9 @@ function Booking({origin, desti, origintime, destitime, seats, priceSleeper, pri
 
  
     const [board, setBoard] = useState<boolean>(true)
-
     const [ open, setOpen ] = React.useState<boolean>(false);
+    const [ seatid, setSeatid ] = React.useState<string>("");
+
 
     const handleDrawerOpen: any = () => {
         setOpen(true);
@@ -68,16 +69,34 @@ function Booking({origin, desti, origintime, destitime, seats, priceSleeper, pri
                       </div>                      
                   </div>
                   <div className={Styles.leftbox3}>
-                      {seats?.map((itm: any) => { return (itm.seatType == "sitting")? (
+                      <div>
+                      {seats?.map((itm: any) => { return (itm.seatBerth == "lower")? (
                            <Seat 
                            numb={itm.seatNumber}
                            seatNumber={itm.seatNumber}
                            seatStatus={itm.seatStatus}
                            seatType={itm.seatType}
                            seatId={itm._id}
+                           setSeatid={setSeatid}
                            />
                       ):("")
                        })}  
+                      </div>
+                      <div className={Styles.corri}></div>
+                      <div className={Styles.corri1}>
+                      {seats?.map((itm: any) => { return (itm.seatBerth == "lower" && itm.seatType == "sleeper")? (
+                           <Sleeper 
+                           numb={itm.seatNumber}
+                           seatNumber={itm.seatNumber}
+                           seatStatus={itm.seatStatus}
+                           seatType={itm.seatType}
+                           seatId={itm._id}
+                           setSeatid={setSeatid}
+                           />
+                      ):("")
+                       })}  
+                      </div>
+                     
                   </div>
                 </div>
                 <div className={Styles.leftbox}>
@@ -87,16 +106,22 @@ function Booking({origin, desti, origintime, destitime, seats, priceSleeper, pri
                   </div>     
                   </div>
                   <div className={Styles.leftbox3}>
-                  {seats?.map((itm: any) => { return (itm.seatType == "sleeper")? (
+                      <div>
+                      {seats?.map((itm: any) => { return (itm.seatBerth == "upper" && itm.seatType == "sleeper")? (
                            <Sleeper 
                            numb={itm.seatNumber}
                            seatNumber={itm.seatNumber}
                            seatStatus={itm.seatStatus}
                            seatType={itm.seatType}
                            seatId={itm._id}
+                           setSeatid={setSeatid}
                            />
                       ):("")
                        })}  
+                      </div>
+                      {/* <div className={Styles.corri}></div>
+                      <div className={Styles.corri1}></div> */}
+                  
                   </div>
                 </div> 
             </div>
@@ -124,17 +149,24 @@ function Booking({origin, desti, origintime, destitime, seats, priceSleeper, pri
                          <h4>{desti}</h4>
                          <p>{destitime}</p>
                     </div>  
-                )}
+                )} 
                 </div>
 
                 <div className={Styles.rightbottom1}>
                   <p>{`₹${priceSeater}`}</p>
                     <div className={Styles.cont}>
-                        <p onClick={handleDrawerOpen} >Make Payment</p>
+                        <p onClick={handleDrawerOpen} >Continue Booking</p>
                     </div>
                 </div>
 
-                <PaymentDrawer open={open} handleDrawerClose={handleDrawerClose} />
+                <PaymentDrawer 
+                open={open} 
+                handleDrawerClose={handleDrawerClose} 
+                boardingPoint={origin}
+                dropingPoint={desti}
+                boardingTime={origintime}
+                seatId={seatid}
+                seatFare={priceSeater }/>
 
             </div>
             

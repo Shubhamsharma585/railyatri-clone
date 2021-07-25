@@ -8,11 +8,12 @@ interface ISeat{
     seatStatus: string
     seatType: string
     seatId: string
+    setSeatid: (seatId: string) => void
 }
  
 
 
-function Seat({ numb, seatNumber, seatStatus, seatType, seatId } :ISeat ) {
+function Seat({ numb, seatNumber, seatStatus, seatType, seatId, setSeatid } :ISeat ) {
 
 
 const [bo, setBo] = useState<boolean>(false)
@@ -27,11 +28,12 @@ const book = () => {
     else{
         setClr("white")
     }   
+    setSeatid(seatId)
 }
 
 
 
-
+ 
 
     return (   
             <div className={Styles.main}>
