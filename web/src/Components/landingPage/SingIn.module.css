@@ -1,0 +1,39 @@
+.signDiv {
+    display: flex;
+    justify-content: space-between;
+}
+
+.psign{
+    font-size: 14px;
+    color: rgb(14, 89, 163);
+    font-weight: 600;
+    cursor: pointer;
+    margin: 5px 0 3px 0;
+}
+.save{
+    margin: 0;
+    font-size: 10px;
+}
+
+.spanItem {
+    font-size: 14px;
+    color: rgb(219, 110, 0);
+    font-weight: 500;
+    vertical-align: middle;
+    padding-left: 10px;
+}
+
+.btn {
+    width: 50px;
+    height: 36px;
+    border-radius: 2em;
+    background-color: #E7E7E7;
+    color: rgba(0, 0, 0, .5);
+    border-color: rgba(0, 0, 0, .1);
+    cursor: pointer;
+    box-shadow: none;
+    border: 0;
+    /* vertical-align: bottom;   */
+    /* display: inline-block; */
+    /* align-items: center; */
+}

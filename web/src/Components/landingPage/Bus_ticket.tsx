@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import style from './Bus_ticket.module.css'
 
 
 
 function Bus_ticket() {
+    const history = useHistory ();
     const [searchBus, setSearchBus] = useState<any>({})
     const [from, setFrom] = useState<string>("")
     const [to, setTo] = useState<string>("")
@@ -18,7 +20,8 @@ function Bus_ticket() {
             to: to,
             date: date
         })
-        console.log(searchBus)
+        // console.log(searchBus);
+        history.push ('/search')
     }
 
     return (
@@ -30,9 +33,20 @@ function Bus_ticket() {
             <input className={style.input} onChange={(e) => (setDate(e.target.value))} type="date" placeholder="To" />
             <p className={style.p}>Choose bus type</p>
             <div className={style.btndiv}>
-                {ac ? <button onClick={() => (setAc(!ac))} style={{ backgroundColor: "#fff", color: "#000" }} className={style.btn}>AC</button> : <button onClick={() => (setAc(!ac))} className={style.btn}>AC</button>}
-                {luxury ? <button onClick={() => (setLuxury(!luxury))} style={{ backgroundColor: "#fff", color: "#000" }} className={style.btn}>Luxury</button> : <button onClick={() => (setLuxury(!luxury))} className={style.btn}>Luxury</button>}
-                {sleeper ? <button onClick={() => (setSleeper(!sleeper))} style={{ backgroundColor: "#fff", color: "#000" }} className={style.btn}>Sleeper</button> : <button onClick={() => (setSleeper(!sleeper))} className={style.btn}>Sleeper</button>}
+                {ac ?
+                    <button onClick={() => (setAc(!ac))} style={{ backgroundColor: "#fff", color: "#000" }} className={style.btn}>AC</button>
+                    :
+                    <button onClick={() => (setAc(!ac))} className={style.btn}>AC</button>}
+
+                {luxury ?
+                    <button onClick={() => (setLuxury(!luxury))} style={{ backgroundColor: "#fff", color: "#000" }} className={style.btn}>Luxury</button>
+                    :
+                    <button onClick={() => (setLuxury(!luxury))} className={style.btn}>Luxury</button>}
+
+                {sleeper ?
+                    <button onClick={() => (setSleeper(!sleeper))} style={{ backgroundColor: "#fff", color: "#000" }} className={style.btn}>Sleeper</button>
+                    :
+                    <button onClick={() => (setSleeper(!sleeper))} className={style.btn}>Sleeper</button>}
             </div>
             <button onClick={handleOnClick} className={style.btnSearch}>SEARCH</button>
         </div>

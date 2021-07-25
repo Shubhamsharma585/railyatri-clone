@@ -1,0 +1,52 @@
+.mainDiv {
+    width: 100%;
+    height: 100vh;
+    /* opacity: 0.3; */
+    position: fixed;
+    /* background-color: rgb(243, 235, 235); */
+    /* z-index: 1; */
+}
+
+.sign_container {
+    width: 400px;
+    height: 300px;
+    margin: 30px auto;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 9px rgb(0 0 0 / 50%);
+}
+
+.heading {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: rgb(51, 122, 183);
+    font-weight: 500;
+    margin: 0px;
+    text-align: center;
+}
+.p{
+    font-size: 12px;
+    color: #4C4C4C;
+    margin: 5;
+    text-align: center;
+}
+.mobile{
+    width: 212px;
+    padding: 12px;
+    font-size: 15px;
+    margin: 10px auto;
+    outline: none;
+}
+.OTPbtn{
+    width: 240px;
+    padding: 9px;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 9px;
+    border-width: 0px;
+    border-radius: 9px;
+    background: #337ab7;
+    color: #fff;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
