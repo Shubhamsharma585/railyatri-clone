@@ -1,27 +1,27 @@
 
+import IBus from "../../Types/bus.types"
 import { BUS_REQUEST, BUS_SUCCESS, BUS_FAILURE } from "./actiontype"
 
-
-
- 
-const initstate = {
-   
+interface IState {
+    isLoading: boolean;
+    data: IBus[];
 }
 
-interface Ibuspayload {
-    
+ 
+const initstate: IState = {
+   isLoading: false,
+   data: []
 }
 
 
 interface Ibusreducer {
     type: string,
-    payload: Ibuspayload
+    payload: any
 }
 
 
-function busreducer(state = initstate, {type, payload}: Ibusreducer) 
+function busreducer (state = initstate, {type, payload}: Ibusreducer | any) 
 {
-    console.log(state, type, payload)
     switch(type)
     {  
         case BUS_REQUEST: 
@@ -37,6 +37,7 @@ function busreducer(state = initstate, {type, payload}: Ibusreducer)
             return {
                 ...state,
                 isloading: false,
+                data: payload
             }
         }
         case BUS_FAILURE:

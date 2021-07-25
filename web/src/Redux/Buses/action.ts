@@ -1,6 +1,7 @@
 
 import { BUS_REQUEST, BUS_SUCCESS, BUS_FAILURE } from "./actiontype"
-import Axios from "axios"
+
+import { getBuses } from '../../Api/axios';
 
 
 
@@ -23,19 +24,14 @@ interface IActiontype {
 type DispatchAllAssets = (arg: IAllAssets | IActiontype) => (IAllAssets | IActiontype);
 
  
-export const fetchingbuses = (payload: Ibuspayload) => (dispatch: DispatchAllAssets) => {
-    console.log("fetching start")
-    console.log(payload)
+export const fetchingbuses = () => (dispatch: DispatchAllAssets | any) => {
 
     dispatch(fetchingrequest())
 
-    Axios.get("http://localhost:2233/buses", {
-       
+    getBuses()
+    .then((res) => {
+        dispatch(fetchingsuccess(res.data.buses))
     })
-        .then((res) => {
-            console.log(res.data.data)
-            dispatch(fetchingsuccess(res.data.data))
-        })
 }
 
 

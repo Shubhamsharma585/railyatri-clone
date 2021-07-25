@@ -149,7 +149,7 @@ router.patch('/:id/price', protect, authorize(["admin", "owner"]), async(req: Re
 
 //edit seatType
 
-router.patch('/:id/seat', protect, authorize(["admin", "owner"]), async(req: Request, res: Response)=>{
+router.patch('/:seatNum/seat', protect, authorize(["admin", "owner"]), async(req: Request, res: Response)=>{
 
 });
 

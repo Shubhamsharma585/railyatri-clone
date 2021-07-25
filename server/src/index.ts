@@ -1,4 +1,5 @@
 import express, { Express } from 'express';
+import cors from 'cors';
 
 import { register, login } from './controllers/auth.controller';
 import busController from './controllers/bus.controller';
@@ -8,6 +9,7 @@ const app: Express = express();
 
 
 app.use(express.json());
+app.use(cors());
 app.use(passport.initialize())
 passport.serializeUser(function(user:any, done:any) {
     done(null,'user');
