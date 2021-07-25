@@ -3,8 +3,8 @@ import app from './index';
 
 const start = async ()=>{
     await connect();
-    app.listen(2244, ()=>{
-        console.log('listening to port 2244');
+    app.listen(5000, ()=>{
+        console.log('listening to port 5000');
     });
 };
 

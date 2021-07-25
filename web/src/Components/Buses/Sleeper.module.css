@@ -1,0 +1,31 @@
+
+
+.main
+{
+    border: black 0px solid;
+    width: fit-content;
+    width: 45px;
+    height: 23px;
+    background: url("../../Images/sleeper.png");
+    background-position: center;
+    background-size: 50px;
+    text-align: center;
+    justify-content: center;
+    padding-top: 3px;
+    float: left;
+    cursor: pointer;
+
+ 
+    margin: 6px 6px 6px 6px;
+}
+
+.main>p
+{
+    color: rgb(59, 58, 58);
+    font-size: 12px;
+    margin: 3px 0px -2px 0px;
+    border-bottom: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+    opacity: 1;
+}

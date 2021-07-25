@@ -4,10 +4,11 @@
     height: 170px;
     border: 0px solid black;
     border-radius: 10px;
-    margin: 20px 0px;
+    margin: 20px 0px 0px 0px;
     background-color: white;
     padding-top: 10px;
     box-shadow: 1px 0px 2px 1px rgb(150, 149, 149);
+    cursor: default;
 }
 
 
@@ -17,6 +18,7 @@
     text-align: left;
     padding-top: 0px;
     width: 30%;
+    cursor: default;
 }
 .mainmid
 {
@@ -24,21 +26,26 @@
     border-right: 1px solid lightgray;
     padding-top: 0px;
     width: 40%;
+    cursor: default;
 }
 .mainmid1
 {
    justify-content: space-between;   
    margin-bottom: 0px;
+   cursor: default;
 }
 .mainmid1>p
 {
    margin-bottom: 10px;
+   cursor: default;
 }
 .mainmid1time
 {
     font-weight: 600;
     font-size: 20px;
+    cursor: default;
 }
+
 .mainmid2time
 {
     font-weight: 400;
@@ -46,6 +53,7 @@
     margin-left: 15%;
     margin-right: 15%;
     color: grey;
+    cursor: default;
 }
 .mainmid2
 {
@@ -54,6 +62,7 @@
     justify-content: space-between;
     margin-top: 0px;
     padding-top: 0px;
+    cursor: default;
 }
 .mainmid2>p
 {
@@ -62,6 +71,7 @@
     margin-bottom: 2px;
     margin-right: 35px;
     font-size: 16px;
+    cursor: default;
 }
 .mainmid3
 {
@@ -70,6 +80,7 @@
     justify-content: space-between;
     margin-top: 0px;
     padding-top: 0px;
+    cursor: default;
 }
 .mainmid3>p
 {
@@ -79,6 +90,7 @@
     margin-right: 35px;
     font-size: 12px;
     color: #0475e5;
+    cursor: default;
 }
 .mainright
 {
@@ -87,6 +99,7 @@
     width: 15%;
     margin-left: 0px;
     text-align: right;
+    cursor: default;
 }
 .mainright1
 {

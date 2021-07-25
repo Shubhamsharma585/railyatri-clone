@@ -1,5 +1,5 @@
 
-
+ 
 .main
 {
     height: 500px;
@@ -7,8 +7,8 @@
     border-radius: 10px;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
-    margin: 20px 0px;
-    background-color: white;
+    margin: 20px 0px 0px 0px;
+    background-color: white; 
     padding-top: 10px;
     box-shadow: 1px 0px 2px 1px rgb(150, 149, 149);
     display: flex;
@@ -45,12 +45,12 @@
 .leftbox2
 {
     height: 100%;
-    width: 80px;
+    width: 100px;
     border: 0px solid black;
     margin: auto;
 }
 .leftbox21
-{
+{ 
     transform: rotate(-90deg);  
     border: 0px solid red;
     width: 130px;
@@ -77,14 +77,102 @@
 {
     height: 100%;
     width: 100%;
-    border: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+
+    justify-content: space-between;
 }
 
 .right
 {
     border: 1px solid lightgray;
     border-radius: 10px;
+    background-color: #fafafa;
     margin: 5% 2%;
     width: 35%;
     height: 80%;
+}
+
+.righttop
+{
+    border: 0px solid lightgray;
+    height: 18%;
+    display: flex;
+    flex-direction: row;
+}
+.righttopbox
+{
+    border: 0px solid lightgray;
+    width: 50%;
+    cursor: pointer;
+}
+
+.righttopbox>h4
+{
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
+.righttopbox>p
+{
+    margin-top: 5px;
+    margin-bottom: 0px;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgb(121, 121, 121);
+}
+.rightbottom
+{
+    border: 0px solid lightgray;
+    height: 68%;
+}
+.rightbottombox
+{
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+}
+.rightbottombox>p
+{
+    font-weight: 500;
+    margin: 20px 2px 2px 100px;
+}
+.rightbottomcheck
+{
+    margin: 23px 20px 2px 20px;
+    font-size: 25px;
+}
+
+.rightbottom1
+{
+    border-top: 1px solid lightgray;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    height: 13%;
+    display: flex;
+    padding-left: 20px;
+    flex-direction: row;
+}
+.rightbottom1>p
+{
+    margin-left: 4%;
+}
+
+.cont
+{
+   background-color: #74b202;
+   border-radius: 6px;
+   width: 170px;
+   padding-top: 10px;
+   height: 28px;
+   margin-left: 20%;
+   margin-top: 5px;
+   cursor: pointer;
+}
+
+.cont>p
+{
+    color: white;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-weight: 600;
+    font-size: 15px;   
 }

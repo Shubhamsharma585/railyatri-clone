@@ -1,27 +1,51 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Styles from "./Buses.module.css"
 import BuseStop from "./Busestop"
 import BuseCard from "./Busecard"
 import Searchbar from "./Searchbar"
 import Box from "./Box"
 import Lounge from "./Lounge"
-import Booking from "./Booking"
+import { fetchingbuses } from '../../Redux/Buses/action'
+import { useAppDispatch, useAppSelector } from '../../Redux/stateHooks'
 
+ 
 function Buses() {
 
  
-    var n = 45;
+    const allbuses = useAppSelector(state => state.bus.data);
+    
+    const dispatch = useAppDispatch()
+
+    const handleGetBus = ()=>{
+        dispatch(fetchingbuses())
+    }
+    
+    useEffect(()=>{ 
+        handleGetBus()
+    },[])
+
+    console.log(allbuses)
+
+    var n = allbuses.length;
     var sta="Jaipur"
     var end="Delhi"
 
-    var cat = ["AC", "SLEEPER"]
-    var desti="Gopal Wadi"
-    var origin="Ganesh Pet"
-    var durationh="44"
-    var durationm="25"
-    var origintime="21:00"
-    var destitime="17:25"
-    var price="100"
+
+    interface Iseats {
+        num: number,
+        status: string
+    }
+    interface Ibus {
+        total: number,
+        seats: Iseats[]
+    }
+
+    let bus: Ibus
+   bus = {
+        total: 50,
+        seats: [{ num: 1, status: "booked"},{ num: 2, status: "vacant"}]
+    }
+
 
 
 
@@ -84,67 +108,24 @@ function Buses() {
 
                    <div className={Styles.right}>
                        <h4 >{`${n} Other Buses`}</h4>
-                       <BuseCard 
-                       company="erere" 
-                       catg={cat}
-                       origin={origin}
-                       desti={desti}
-                       durationh={durationh}
-                       durationm={durationm}
-                       origintime={origintime}
-                       destitime={destitime}
-                       price={price}
-                       seatAvail={"7"}
-                       />
-                       <BuseCard 
                        
-                       company="Tyughgjghjgjh" 
-                       catg={cat}
-                       origin={origin}
-                       desti={desti}
-                       durationh={durationh}
-                       durationm={durationm}
-                       origintime={origintime}
-                       destitime={destitime}
-                       price={price}
-                       seatAvail={"7"}/>
-                       <BuseCard 
-                       company="HJKHKJJK HJHKHJK" 
-                       catg={cat}
-                       origin={origin}
-                       desti={desti}
-                       durationh={durationh}
-                       durationm={durationm}
-                       origintime={origintime}
-                       destitime={destitime}
-                       price={price}
-                       seatAvail={"7"}
-                       />
-                         <BuseCard 
-                       company="HJKHKJJK HJHKHJK" 
-                       catg={cat}
-                       origin={origin}
-                       desti={desti}
-                       durationh={durationh}
-                       durationm={durationm}
-                       origintime={origintime}
-                       destitime={destitime}
-                       price={price}
-                       seatAvail={"7"}
-                       />
-                         <BuseCard 
-                       company="HJKHKJJK HJHKHJK" 
-                       catg={cat}
-                       origin={origin}
-                       desti={desti}
-                       durationh={durationh}
-                       durationm={durationm}
-                       origintime={origintime}
-                       destitime={destitime}
-                       price={price}
-                       seatAvail={"7"}
-                       />
-                       <Booking/>
+                      {allbuses?.map((itm : any) => {
+                          return <BuseCard 
+                       company={itm.companyNameId.companyName} 
+                       catg={itm.busType}
+                       origin={itm.originCity}
+                       desti={itm.destinationCity}
+                       origintime={itm.startTime}
+                       destitime={itm.endTime}
+                       priceSleeper={itm.priceId.sleeper}
+                       priceSeater={itm.priceId.sitting}
+                       seatAvail={itm.seats.totalSeats - itm.seats.seatsBooked}
+                       seats={itm.seats.seatTypeId}
+                          />
+                      })
+
+                      }
+                      
 
 
                       

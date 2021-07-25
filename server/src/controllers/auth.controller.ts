@@ -6,9 +6,9 @@ import { Request, Response } from 'express';
 import User from '../models/user.model';
 import IUser from '../types/user.types';
 
-const secretKey = process.env.JWT_SECRET_KEY || '';
+const secretKey: string = process.env.JWT_SECRET_KEY || '';
 
-const newToken = (user: IUser)=>{
+const newToken = (user: IUser): string=>{
     return jwt.sign({id: user._id}, secretKey)
 };
 
