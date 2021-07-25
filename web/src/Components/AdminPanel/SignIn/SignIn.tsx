@@ -33,13 +33,13 @@ const SignIn = () => {
         password
     }
 
-    const isAuth = loadData('isAuth');
+    const isAuth = useAppSelector(state=> state.auth.isAuth) || loadData('isAuth');
     const err = useAppSelector(state=> state.auth.err);
 
     let Authentication: React.FormEventHandler<HTMLFormElement> = async (e) => {
         e.preventDefault();
         // try {
-        //     await auth.signInWithEmailAndPassword(email, password);
+        //     await auth.signInWithEmailAndPassword(email, assword);
         //     alert("login successful");
         // } catch {
         //     alert("failed to log in");

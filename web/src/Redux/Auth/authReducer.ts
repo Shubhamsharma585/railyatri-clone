@@ -1,5 +1,5 @@
 import { loadData, saveData } from "../../Utils/localstorage";
-import { LOGIN_USER_FAILURE, LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS } from "./actionType";
+import { LOGIN_USER_FAILURE, LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGOUT_USER } from "./actionType";
 
 const isAuth = loadData("auth") || false;
 console.log(isAuth)
@@ -48,6 +48,15 @@ const authReducer = (state: IState | any= initState, action: any) => {
                 isLoading: false,
                 isAuth: false,
                 err: payload
+            }
+        }
+
+        case LOGOUT_USER: {
+            saveData("isAuth", false);
+            saveData("token", '');
+            return {
+                isLoading: false,
+                isError: false,
             }
         }
 

@@ -51,6 +51,9 @@ export const AdminPanel = () => {
     const [ imgLoc, setImgLoc ] = useState<string[]>(new Array(20).fill(null));
     const [ isUploading, setUploading ] = useState<boolean>(false);
 
+    let [ success, setSuccess ] = useState<boolean>(false);
+    let [ failure, setFailure ] = useState<boolean>(false);
+
     const BusTypes = ['', 'luxury', 'ac', 'sleeper']
 
     const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -127,11 +130,19 @@ export const AdminPanel = () => {
         console.log(JSON.stringify(postData))
         addBus(postData)
         .then(res=>{
-            console.log(res.data.status);
+            res.data.status === 'success' ? setSuccess(true) : setFailure(true);
         })
         .catch(err=>{
-            console.log(err);
+            err && setFailure(true);
         })
+    }
+
+    if (success){
+        alert('Bus added successfully');
+    }
+
+    if(failure){
+        alert('Something went wrong');
     }
 
     return(
