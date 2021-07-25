@@ -1,0 +1,58 @@
+.nav_bar_upperDiv {
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+}
+
+.nav_bar {
+    width: 90%;
+    height: 65px;
+    margin: auto;
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav_inner {
+    display: flex;
+    align-items: center;
+}
+
+.ul_list {
+    display: flex;
+    cursor: pointer;
+}
+
+.ul_list li:hover {
+    border-bottom: 3px solid #1079D7;
+}
+
+.ul_list li {
+    list-style-type: none;
+    margin-right: 10px;
+    display: flex;
+    padding: 25px 12px 20px 0px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.ul_list li img {
+    width: 14px;
+    height: 16px;
+    margin-right: 5px;
+}
+
+.nav_inner_sign {
+    width: 220px;
+    height: 38px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    background-color: #f4f4f4;
+}
+
+.bus_services {
+    border-bottom: 3px solid #1079D7;
+    color: #1079D7;
+}

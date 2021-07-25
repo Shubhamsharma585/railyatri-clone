@@ -87,7 +87,7 @@ function Booking({origin, desti, origintime, destitime, seats, priceSleeper, pri
                       ):("")
                        })}  
                   </div>
-                </div>
+                </div> 
             </div>
             <div className={Styles.right}>
                 <div className={Styles.righttop}>

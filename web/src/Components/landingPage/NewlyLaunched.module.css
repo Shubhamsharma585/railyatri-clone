@@ -1,0 +1,27 @@
+.new_div {
+    width: 100%;
+    padding-top: 30px;
+    color: #000;
+    background-color: #F4F2F2;
+    margin-bottom: 30px;
+}
+
+.container_div {
+    display: flex;
+    width: 85%;
+    margin: auto;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.newly_lunched {
+    background: #FFB300;
+    color: #fff;
+    font-size: 14px;
+    padding: 3px 10px;
+    width: 160px;
+    display: block;
+    border-radius: 26px;
+    text-align: center;
+    margin-bottom: 10px;
+}
