@@ -1,6 +1,7 @@
 import { BorderBottom } from '@material-ui/icons'
 import React, {useState} from 'react'
 import Styles from "./Booking.module.css"
+import { PaymentDrawer } from './PaymentDrawer'
 import Seat from "./Seat"
 import Sleeper from "./Sleeper"
 
@@ -30,6 +31,16 @@ function Booking({origin, desti, origintime, destitime, seats, priceSleeper, pri
 
  
     const [board, setBoard] = useState<boolean>(true)
+
+    const [ open, setOpen ] = React.useState<boolean>(false);
+
+    const handleDrawerOpen: any = () => {
+        setOpen(true);
+    };
+
+    const handleDrawerClose: any = () => {
+        setOpen(false)
+    }
     
     const ori = (sta: boolean): void => {
         setBoard(sta)
@@ -119,9 +130,11 @@ function Booking({origin, desti, origintime, destitime, seats, priceSleeper, pri
                 <div className={Styles.rightbottom1}>
                   <p>{`₹${priceSeater}`}</p>
                     <div className={Styles.cont}>
-                        <p>Make Payment</p>
+                        <p onClick={handleDrawerOpen} >Make Payment</p>
                     </div>
                 </div>
+
+                <PaymentDrawer open={open} handleDrawerClose={handleDrawerClose} />
 
             </div>
             
