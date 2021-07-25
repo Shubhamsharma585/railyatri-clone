@@ -7,13 +7,13 @@ enum busType {
     sleeper = 'sleeper'
 }
 
-const busSchema = new Schema({
-    companyName: {
+const busSchema = new Schema<IBus>({
+    companyNameId: {
         type: Schema.Types.ObjectId,
         ref: 'user',
         required: true
     },
-    price: {
+    priceId: {
         type: Schema.Types.ObjectId,
         ref: 'price',
         required: true
@@ -22,6 +22,27 @@ const busSchema = new Schema({
         type: String,
         enum: Object.values(busType),
         required: true
+    },
+    seats: {
+        totalSeats: {
+            type: Number,
+            required: true
+        },
+        seatsBooked: {
+            type: Number,
+            required: true
+        },
+        totalSleeperSeats: {
+            type: Number,
+            required: true
+        },
+        seatTypeId: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'seatType',
+                required: true
+            }
+        ]
     },
     startTime: {
         type: String,

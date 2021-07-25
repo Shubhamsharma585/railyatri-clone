@@ -1,12 +1,12 @@
-export default interface IUser {
+export default interface IAdminOwner {
     _id?: string;
     firstName: string;
     lastName: string;
     password: string;
-    phone: Number | string;
+    phone: number;
+    companyName?: string;
     email: string;
-    companyName: string;
     role: string;
-    isModified: boolean | any;
+    isModified: any;
     checkPassword: any;
 }
