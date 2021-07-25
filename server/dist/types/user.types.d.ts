@@ -9,4 +9,5 @@ export default interface IUser {
     role: string;
     isModified: boolean | any;
     checkPassword: any;
+    tickets: string[];
 }
