@@ -1,0 +1,84 @@
+.container {
+    width: 370px;
+    height: auto;
+    min-height: 372px;
+    position: relative;
+}
+
+.h1 {
+    text-align: left;
+    margin-left: 15px;
+    color: #fff;
+    font-size: 18px;
+    font-family: inherit;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.input {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    outline: 0;
+    width: 80%;
+    /* margin-left: 15px; */
+    font-size: 16px;
+    color: #212121;
+    padding: 0 15px;
+    font-weight: 500;
+    min-height: 40px;
+    border-radius: 3px;
+    border: 0;
+    margin-bottom: 15px;
+}
+.img{
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    right: 20px;
+    top: 50px;
+    cursor: pointer;
+}
+.p{
+    font-size: 14px;
+    text-align: left;
+    margin-left: 17px;
+    color: #fff;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.btndiv{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+.btn{
+    display: inline-block;
+    width: 30%;
+    background-color: rgba(150, 150, 150, 0.59);
+    border: 1px solid rgba(150, 150, 150, 0.59);
+    border-radius: 3px;
+    color: #fff;
+    padding: 4px 15px;
+    margin-right: 5px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+.btnSearch{
+    background: #74b202;
+    border: 1px solid #86BC24;
+    width: 90%;
+    margin: auto;
+    font-weight: 500;
+    border-radius: 3px;
+    height: 45px;
+    font-size: 16px;
+    display: block;
+    margin-top: 10px;
+    margin-left: 15px;
+    padding: 7px;
+    color: #fff;
+    border: 0;
+    cursor: pointer;
+}

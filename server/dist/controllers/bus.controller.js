@@ -128,7 +128,7 @@ router.patch('/:id/price', protect_1.default, authorise_1.default(["admin", "own
     }
 }));
 //edit seatType
-router.patch('/:id/seat', protect_1.default, authorise_1.default(["admin", "owner"]), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.patch('/:seatNum/seat', protect_1.default, authorise_1.default(["admin", "owner"]), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 }));
 router.delete('/:id', protect_1.default, authorise_1.default(["admin", "owner"]), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;

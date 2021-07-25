@@ -16,8 +16,8 @@ const db_1 = __importDefault(require("./config/db"));
 const index_1 = __importDefault(require("./index"));
 const start = () => __awaiter(void 0, void 0, void 0, function* () {
     yield db_1.default();
-    index_1.default.listen(2244, () => {
-        console.log('listening to port 2244');
+    index_1.default.listen(5000, () => {
+        console.log('listening to port 5000');
     });
 });
 start();
