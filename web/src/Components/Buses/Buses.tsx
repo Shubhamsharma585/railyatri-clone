@@ -6,10 +6,19 @@ import Searchbar from "./Searchbar"
 import Box from "./Box"
 import Lounge from "./Lounge"
 import Booking from "./Booking"
+import { useAppSelector, useAppDispatch } from "../hooks"
+import { fetchingbuses } from '../../Redux/Buses/action'
+
 
 function Buses() {
 
  
+    const allbuses = useAppSelector(state => state.bus)
+    const dispatch = useAppDispatch()
+    // dispatch(fetchingbuses({})
+
+    
+
     var n = 45;
     var sta="Jaipur"
     var end="Delhi"
@@ -22,6 +31,22 @@ function Buses() {
     var origintime="21:00"
     var destitime="17:25"
     var price="100"
+
+    interface Iseats {
+        num: number,
+        status: string
+    }
+    interface Ibus {
+        total: number,
+        seats: Iseats[]
+    }
+
+    let bus: Ibus
+   bus = {
+        total: 50,
+        seats: [{ num: 1, status: "booked"},{ num: 2, status: "vacant"}]
+    }
+
 
 
 
@@ -144,7 +169,7 @@ function Buses() {
                        price={price}
                        seatAvail={"7"}
                        />
-                       <Booking/>
+                       <Booking origin={origin} desti={desti} origintime={origintime} destitime={destitime} bus={bus}/>
 
 
                       
