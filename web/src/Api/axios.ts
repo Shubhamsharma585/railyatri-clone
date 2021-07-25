@@ -1,5 +1,6 @@
 import Axios from 'axios';
 import IBus from '../Types/bus.types';
+import ISignIn from '../Types/login.types';
 
 const axios = Axios.create({
     baseURL: 'http://localhost:5000/',
@@ -20,4 +21,10 @@ export const getBuses = ()=>{
 
 export const addBus = (data: IBus)=>{
     return axios.post('/bus', data)
+}
+
+// login
+
+export const loginReq = (data: ISignIn)=>{
+    return axios.post('/login', data);
 }

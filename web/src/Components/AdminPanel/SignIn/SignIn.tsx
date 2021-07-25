@@ -10,22 +10,42 @@ import {
     FormInput,
     FormButton,
     CompanyLogo
-} from './SignInElements.jsx'
+} from './SignInElements'
 
 import { auth } from "../../../Utils/Firebase/index";
+import { useHistory } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../../Redux/stateHooks';
+import { loginUser } from '../../../Redux/Auth/action';
+import ISignIn from '../../../Types/login.types';
 
 
 const SignIn = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    let Authentication = async (e) => {
+
+    const history = useHistory();
+
+    const dispatch = useAppDispatch();
+
+    const data: ISignIn = {
+        email,
+        password
+    }
+
+    // const token = useAppSelector(state=> state.auth.token);
+
+    let Authentication: React.FormEventHandler<HTMLFormElement> = async (e) => {
         e.preventDefault();
-            try {
-                await auth.signInWithEmailAndPassword(email, password);
-                alert("login successful");
-            } catch {
-                alert("failed to log in");
-            }
+        // try {
+        //     await auth.signInWithEmailAndPassword(email, password);
+        //     alert("login successful");
+        // } catch {
+        //     alert("failed to log in");
+        // }
+
+        dispatch(loginUser(data));
+        
+        history.push('/addBus');
     }
 
     return (
