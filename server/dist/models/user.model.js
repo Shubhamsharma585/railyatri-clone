@@ -33,10 +33,12 @@ const userSchema = new mongoose_1.Schema({
         type: String,
         default: 'NA'
     },
-    tickets: {
-        type: mongoose_1.Schema.Types.ObjectId,
-        ref: 'ticket',
-    },
+    tickets: [
+        {
+            type: mongoose_1.Schema.Types.ObjectId,
+            ref: 'ticket',
+        }
+    ],
     role: {
         type: String,
         enum: Object.values(roles),

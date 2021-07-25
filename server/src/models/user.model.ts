@@ -31,10 +31,12 @@ const userSchema = new Schema ({
         type: String,
         default: 'NA'
     },
-    tickets: {
-        type: Schema.Types.ObjectId,
-        ref: 'ticket',
-    },
+    tickets: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'ticket',
+        }
+    ],
     role: {
         type: String,
         enum: Object.values(roles),
