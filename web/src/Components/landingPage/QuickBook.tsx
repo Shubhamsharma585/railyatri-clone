@@ -3,7 +3,7 @@ import Carousel from 'react-elastic-carousel'
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import './Offer.css'
 
-class Offer extends React.Component {
+class QuickBook extends React.Component {
     carousel: any
     Carousel: any
     render() {
@@ -11,8 +11,8 @@ class Offer extends React.Component {
             <div style={{ minWidth: "550px" }}>
                 <div className="leftright">
                     <div style={{display:"flex",alignItems:"center"}}>
-                        <h4 className="h4">Offers</h4>
-                        <span style={{color:"#000000B3"}}>You are special for us</span>
+                        <h4 className="h4">Quick Book</h4>
+                        <span style={{color:"#000000B3"}}>Based on Recent and Top searches</span>
                     </div>
                     <div style={{display:"flex",alignItems:"center"}}>
                         <button className="btn" onClick={() => this.carousel.slidePrev()}> <FaAngleLeft /> </button>
@@ -31,4 +31,4 @@ class Offer extends React.Component {
     }
 }
 
-export default Offer
+export default QuickBook
