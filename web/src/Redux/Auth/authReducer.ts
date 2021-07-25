@@ -20,7 +20,7 @@ const initState: IState = {
     err: ''
 }
 
-const authReducer = (state: IState | undefined= initState, action: any) => {
+const authReducer = (state: IState | any= initState, action: any) => {
     const payload = action?.payload;
 
     switch(action?.type){

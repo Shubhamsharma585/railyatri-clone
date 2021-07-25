@@ -25,7 +25,9 @@ const headers = {
 }
 
 export const addBus = (data: IBus)=>{
-    return axios.post('/bus', data)
+    return axios.post('/bus', data, {
+        headers: headers
+    })
 }
 
 // login
