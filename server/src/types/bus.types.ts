@@ -1,11 +1,5 @@
 import IPrice from "./price.types";
 
-enum busType {
-    ac,
-    luxory,
-    sleeper
-}
-
 interface ISeatTypeId {
     totalSeats: number;
     seatsBooked: number;
@@ -14,7 +8,7 @@ interface ISeatTypeId {
 
 export default interface IBus {
     companyNameId: string;
-    bustype: busType,
+    busType: string,
     priceId: IPrice,
     startTime: string;
     endTime: string;

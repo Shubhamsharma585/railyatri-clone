@@ -71,7 +71,7 @@ router.get('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 router.post('/', protect_1.default, authorise_1.default(["admin", "owner"]), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const user = req === null || req === void 0 ? void 0 : req.user;
-        const inpPrice = req.body.price;
+        const inpPrice = req.body.priceId;
         let seats = req.body.seats;
         let seatType = seats.seatTypeId;
         let seatTypeId = yield seatType_model_1.default.create(seatType);
@@ -126,9 +126,6 @@ router.patch('/:id/price', protect_1.default, authorise_1.default(["admin", "own
             message: err.message
         });
     }
-}));
-//edit seatType
-router.patch('/:seatNum/seat', protect_1.default, authorise_1.default(["admin", "owner"]), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 }));
 router.delete('/:id', protect_1.default, authorise_1.default(["admin", "owner"]), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;

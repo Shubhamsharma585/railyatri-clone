@@ -9,35 +9,32 @@ const ticketSchema = new Schema ({
         type: String,
         required: true
     },
-    bordingPoint: {
+    boardingPoint: {
         type: String,
         required: true
     },
-    dropingPoint: {
+    droppingPoint: {
         type: String,
         required: true
     },
-    bordingTime: {
-        type: String,
-        required: true
-    },
-    dropingTime: {
+    boardingTime: {
         type: String,
         required: true
     },
     fare: {
         type: Number || String,
         required: true
-    }, 
-    seatNumber: {
-        type: String || Number,
+    },
+    seat: {
+        type: Schema.Types.ObjectId,
+        ref: 'seatType',
         required: true
     },
-    seatBerth: {
+    ticketStatus: {
         type: String,
-        required: true
-    },
-
+        enum: ["booked", "cancelled"],
+        default: 'booked'
+    }
 })
 
 const Ticket = model('ticket', ticketSchema);

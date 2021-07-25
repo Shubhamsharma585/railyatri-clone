@@ -10,19 +10,15 @@ const ticketSchema = new mongoose_1.Schema({
         type: String,
         required: true
     },
-    bordingPoint: {
+    boardingPoint: {
         type: String,
         required: true
     },
-    dropingPoint: {
+    droppingPoint: {
         type: String,
         required: true
     },
-    bordingTime: {
-        type: String,
-        required: true
-    },
-    dropingTime: {
+    boardingTime: {
         type: String,
         required: true
     },
@@ -30,14 +26,16 @@ const ticketSchema = new mongoose_1.Schema({
         type: Number || String,
         required: true
     },
-    seatNumber: {
-        type: String || Number,
+    seat: {
+        type: mongoose_1.Schema.Types.ObjectId,
+        ref: 'seatType',
         required: true
     },
-    seatBerth: {
+    ticketStatus: {
         type: String,
-        required: true
-    },
+        enum: ["booked", "cancelled"],
+        default: 'booked'
+    }
 });
 const Ticket = mongoose_1.model('ticket', ticketSchema);
 exports.default = Ticket;
