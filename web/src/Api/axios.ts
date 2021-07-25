@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import IBus from '../Types/bus.types';
 import ISignIn from '../Types/login.types';
+import { loadData } from '../Utils/localstorage';
 
 const axios = Axios.create({
     baseURL: 'http://localhost:5000/',
@@ -10,6 +11,8 @@ const axios = Axios.create({
         "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
     },
 });
+
+const token = loadData('token') || '';
 
 // get buses
 
@@ -21,11 +24,13 @@ export const getBuses = ()=>{
 
 const headers = {
     'Content-Type': 'application/json',
-    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZmFiZjlmMmQ2YWU3NjA4ODkzYjllOSIsImlhdCI6MTYyNzIyMDk3Nn0.AEdZmbbCruhjd1AHbq45nq4zFItRi9pKtvmKox8YQFc'
+    'Authorization': `Bearer ${token}`
 }
 
 export const addBus = (data: IBus)=>{
-    return axios.post('/bus', data)
+    return axios.post('/bus', data, {
+        headers: headers
+    })
 }
 
 // login

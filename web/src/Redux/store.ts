@@ -5,7 +5,7 @@ import busreducer from './Buses/busreducer';
 const store = configureStore({
     reducer: {
         bus: busreducer,
-        // auth: authReducer
+        auth: authReducer
     },
     devTools: (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ 
 });

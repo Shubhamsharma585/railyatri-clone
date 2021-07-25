@@ -4,6 +4,7 @@ import LandingPage from '../Components/landingPage/LandingPage'
 import Buses from "../Components/Buses/Buses"
 import SignIn from '../Components/AdminPanel/SignIn/SignIn';
 import { AdminPanel } from '../Components/AdminPanel/Admin';
+import { PrivateRoute } from './PrivateRoute';
 
 export default function Routes() {
     return (
@@ -18,12 +19,12 @@ export default function Routes() {
                 <Route path="/search" exact>
                     <Buses />
                 </Route>
-                <Route path='/admin'>
+                <Route path='/admin/login'>
                     <SignIn />
                 </Route>
-                <Route path='/addBus'>
+                <PrivateRoute path='/addBus' exact={true} >
                     <AdminPanel />
-                </Route>
+                </PrivateRoute>
             </Switch>
         </div >
     )

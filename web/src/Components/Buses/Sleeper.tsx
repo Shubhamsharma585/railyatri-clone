@@ -2,19 +2,20 @@ import React, {useState} from 'react'
 import Styles from "./Sleeper.module.css"
 
 
-interface ISeat
+interface ISeat 
 {
     numb: number
     seatNumber: string
     seatStatus: string
     seatType: string
     seatId: string
+    setSeatid: (seatId: string) => void
 }
 
 
 
 
-function Sleeper({ numb, seatNumber, seatStatus, seatType, seatId } :ISeat ) {
+function Sleeper({ numb, seatNumber, seatStatus, seatType, seatId, setSeatid } :ISeat ) {
 
 
 const [bo, setBo] = useState<boolean>(false)
@@ -28,7 +29,9 @@ const book = () => {
     }
     else{
         setClr("white")
-    }   
+    } 
+
+    setSeatid(seatId)
 }
 
 

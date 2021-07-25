@@ -1,0 +1,66 @@
+
+
+.main
+{
+    border: 0px solid lightgray;
+    height: 100%;
+    background-color: rgb(238, 237, 237);
+}
+.main1
+{
+    border: 0px solid lightgray;
+    height: 100%;
+    background-color: rgb(238, 237, 237);
+    margin: 5% 5% 20% 20%;
+    justify-content: space-around;
+}
+
+.main1>p
+{
+    font-size: 18px;
+    color: gray;
+}
+.cont
+{
+   background-color: #74b202;
+   border-radius: 6px;
+   width: 170px;
+   padding-top: 10px;
+   height: 28px;
+   margin-left: 0%;
+   margin-top: 0px;
+   padding-left: 30px;
+   cursor: pointer;
+}
+
+.cont>p
+{
+    color: white;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-weight: 600;
+    font-size: 15px;   
+}
+
+.passenger
+{
+    height: 30px;
+    width: 300px;
+    font-size: 12px;
+    border: lightgray 1px solid;
+}
+
+.address
+{
+    height: 30px;
+    width: 300px;
+    border: lightgray 1px solid;
+    font-size: 12px;
+}
+
+.f
+{
+    color: black;
+    background-color: rgb(206, 203, 203);
+    border: 1px solid lightgray;
+}

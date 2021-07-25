@@ -1,16 +1,35 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Drawer, makeStyles } from '@material-ui/core';
 import styled from 'styled-components';
 import CloseIcon from '@material-ui/icons/Close';
+import Styles from "./PaymentDrawer.module.css"
+import Paid from "./Paid"
+
 
 interface IHamburgerDrawerProps {
     open: boolean;
     handleDrawerClose: any;
+    boardingPoint: any;
+    dropingPoint: any;
+    boardingTime: any;
+    seatId: any;
+    seatFare: any;
 }
 
-export const PaymentDrawer = ({open, handleDrawerClose}: IHamburgerDrawerProps) => {
+export const PaymentDrawer = ({
+    open, 
+    handleDrawerClose,
+    boardingPoint,
+    dropingPoint,
+    boardingTime,
+    seatId,
+    seatFare
+}: IHamburgerDrawerProps) => {
 
     const classes = useStyles();
+
+
+    
 
     return (
         <Container>
@@ -26,10 +45,40 @@ export const PaymentDrawer = ({open, handleDrawerClose}: IHamburgerDrawerProps) 
             >
                 <CloseIcon className={`${classes.closeIcon} ${classes.drawerClose}`} 
                             onClick={handleDrawerClose} />
+
+              <div className={Styles.main}>
+                  <div className={Styles.main1}>
+                  <p>Passenger Name</p>
+                 <input type="text" name="" id="" className={Styles.passenger}/>
+
+                 <p>Passenger Address</p>
+                 <input type="text" name="" id="" className={Styles.address}/>
+
+                 <p>Boarding Point</p>
+                 <p className={Styles.f}>{boardingPoint}</p>
+                 <p>Droping Point</p>
+                 <p className={Styles.f}>{dropingPoint}</p>
+                 <p>Boarding Time</p>
+                 <p className={Styles.f}>{boardingTime}</p>
+                 <p>SeatId</p>
+                 <p className={Styles.f}>{seatId}</p>
+                 <p>Seat Fare</p>
+                 <p className={Styles.f}>{seatFare}</p>
+                
+                 
+                
+                     <Paid/>
+                  </div>
+                 
+              </div>
+
+
+
             </Drawer>
         </Container>
     )
 };
+
 
 const Container = styled.div`
 
