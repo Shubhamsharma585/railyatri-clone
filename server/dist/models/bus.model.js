@@ -32,11 +32,15 @@ const busSchema = new mongoose_1.Schema({
             type: Number,
             required: true
         },
+<<<<<<< HEAD
+        seatType: [
+=======
         totalSleeperSeats: {
             type: Number,
             required: true
         },
         seatTypeId: [
+>>>>>>> a251af6ac3362bbff59f0998e9ed2296e272c77a
             {
                 type: mongoose_1.Schema.Types.ObjectId,
                 ref: 'seatType',
