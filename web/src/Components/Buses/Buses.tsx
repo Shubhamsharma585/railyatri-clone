@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Styles from "./Buses.module.css"
 import BuseStop from "./Busestop"
 import BuseCard from "./Busecard"
@@ -6,16 +6,24 @@ import Searchbar from "./Searchbar"
 import Box from "./Box"
 import Lounge from "./Lounge"
 import Booking from "./Booking"
-import { useAppSelector, useAppDispatch } from "../hooks"
 import { fetchingbuses } from '../../Redux/Buses/action'
+import { useAppDispatch, useAppSelector } from '../../Redux/stateHooks'
 
 
 function Buses() {
 
  
-    const allbuses = useAppSelector(state => state.bus)
+    const allbuses = useAppSelector(state => state.bus.data);
+    console.log(allbuses)
     const dispatch = useAppDispatch()
-    // dispatch(fetchingbuses({})
+
+    const handleGetBus = ()=>{
+        dispatch(fetchingbuses())
+    }
+    
+    useEffect(()=>{
+        handleGetBus()
+    },[])
 
     
 

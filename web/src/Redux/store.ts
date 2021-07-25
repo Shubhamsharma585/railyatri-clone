@@ -1,25 +1,14 @@
+import { configureStore } from '@reduxjs/toolkit'
+import busreducer from './Buses/busreducer';
 
-import { applyMiddleware, combineReducers, compose, createStore } from "redux"
-import thunk from "redux-thunk"
-import busreducer from "./Buses/busreducer"
- 
+const store = configureStore({
+    reducer: {
+        bus: busreducer
+    },
+    devTools: (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ 
+});
 
+export { store };
 
-const rootreducer = combineReducers({
-    bus: busreducer,
-})
-
-
-
-const store = createStore(rootreducer,
-    compose(applyMiddleware(thunk),
-    ))
-
-console.log(store.getState())
-export default store;
-
-
-// Infer the `RootState` and `AppDispatch` types from the store itself
-export type RootState = ReturnType<typeof store.getState>
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-export type AppDispatch = typeof store.dispatch
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

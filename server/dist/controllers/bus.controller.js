@@ -25,9 +25,6 @@ router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const page = +req.query.page | 1;
         const limit = +req.query.limit | 10;
         const offset = (page - 1) * limit;
-<<<<<<< HEAD
-        const buses = yield bus_model_1.default.find().populate({ path: 'price', select: 'companyName' }).skip(offset).limit(limit).lean().exec();
-=======
         const buses = yield bus_model_1.default.find()
             .populate({ path: 'companyNameId', select: 'companyName' })
             .populate('priceId')
@@ -36,7 +33,6 @@ router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             .limit(limit)
             .lean()
             .exec();
->>>>>>> a251af6ac3362bbff59f0998e9ed2296e272c77a
         res.status(200).json({
             status: 'success',
             buses
@@ -118,11 +114,7 @@ router.patch('/:id/price', protect_1.default, authorise_1.default(["admin", "own
     try {
         const id = req.params.id;
         const busDetail = yield bus_model_1.default.findById(id).lean().exec();
-<<<<<<< HEAD
-        const updatedPrice = yield price_model_1.default.findByIdAndUpdate(busDetail === null || busDetail === void 0 ? void 0 : busDetail.price, ...req.body, { new: true });
-=======
         const updatedPrice = yield price_model_1.default.findByIdAndUpdate(busDetail === null || busDetail === void 0 ? void 0 : busDetail.priceId, ...req.body, { new: true });
->>>>>>> a251af6ac3362bbff59f0998e9ed2296e272c77a
         res.status(201).json({
             status: 'success',
             price: updatedPrice
@@ -136,7 +128,7 @@ router.patch('/:id/price', protect_1.default, authorise_1.default(["admin", "own
     }
 }));
 //edit seatType
-router.patch('/:id/seat', protect_1.default, authorise_1.default(["admin", "owner"]), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.patch('/:seatNum/seat', protect_1.default, authorise_1.default(["admin", "owner"]), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 }));
 router.delete('/:id', protect_1.default, authorise_1.default(["admin", "owner"]), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
