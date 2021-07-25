@@ -16,6 +16,8 @@ import {
     SeatPrice,
     GalleryWrapper
  } from "./AdminElements";
+import { addBus } from "../../Api/axios";
+import IBus from "../../Types/bus.types";
 
  interface IForm {
     companyName : string;
@@ -49,7 +51,7 @@ export const AdminPanel = () => {
     const [ imgLoc, setImgLoc ] = useState<string[]>(new Array(20).fill(null));
     const [ isUploading, setUploading ] = useState<boolean>(false);
 
-    const BusTypes = ['', 'Luxury', 'AC', 'Sleeper']
+    const BusTypes = ['', 'luxury', 'ac', 'sleeper']
 
     const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
         const { name, value } = e.target
@@ -97,14 +99,14 @@ export const AdminPanel = () => {
         let seatTypeId = new Array(Number(form.sleeper) + Number(form.seater)).fill(1);
         seatTypeId = seatTypeId.map((item, i) => {
             return{
-            seatNum : i < (Math.floor(seatTypeId.length/2)) ? 'L' + (i + 1) : 'U' + (i - Math.floor(seatTypeId.length/2) + 1),
-            seatBerth : i < (Math.floor(seatTypeId.length/2)) ? 'L' : 'U',
-            seatType : i < (Math.floor(seatTypeId.length/2)) && ((i + 1) % 5 === 0) ? 'sleeper' : 'sitting'
+            seatNumber : i < (Math.floor(seatTypeId.length/2 + 4)) ? 'L' + (i + 1) : 'U' + (i - Math.floor(seatTypeId.length/2) + 1 - 4),
+            seatBerth : i >= (Math.floor(seatTypeId.length/2 + 4)) ? 'upper' : 'lower',
+            seatType : i < (Math.floor(seatTypeId.length/2 + 4)) && ((i + 1) % 5 === 0) || i >= (Math.floor(seatTypeId.length/2 + 4)) ? 'sleeper' : 'sitting'
             }
         })
 
-        const postData  = {
-            companyName : form.companyName,
+        const postData: IBus  = {
+            companyNameId : form.companyName,
             priceId : {
                 sleeper : Number(form.sleeperPrice),
                 sitting : Number(form.seaterPrice)
@@ -113,7 +115,7 @@ export const AdminPanel = () => {
             seats : {
                 totalSeats : Number(form.sleeper) + Number(form.seater),
                 seatsBooked : 0,
-                totalSleeperSeats : Number(form.sleeper),
+                totalSleeperSeats : Number(form.sleeper) + 4,
                 seatTypeId : seatTypeId
         },
             startTime : form.startTime,
@@ -122,7 +124,14 @@ export const AdminPanel = () => {
             destinationCity : form.destinationCity,
             gallery : imgLoc?.filter(item => item === null ? false : true)
         }
-        console.log(postData)
+        console.log(JSON.stringify(postData))
+        addBus(postData)
+        .then(res=>{
+            console.log(res.data.status);
+        })
+        .catch(err=>{
+            console.log(err);
+        })
     }
 
     return(
@@ -181,14 +190,14 @@ export const AdminPanel = () => {
             type = "number" 
             name = "sleeper"
             required
-            placeholder = "Sleeper Berth"
+            placeholder = "Upper Berth"
             onChange = {handleChange}
         />
         <SeatPrice 
         name = "sleeperPrice"
         onChange = {handleChange}
         required
-        placeholder = "Price in (&#8377;)"/>
+        placeholder = "Sleeper Price in (&#8377;)"/>
         </span>
         <br/>
         <span>
@@ -197,13 +206,13 @@ export const AdminPanel = () => {
             name = "seater"
             required
             onChange = {handleChange}
-            placeholder = "Seats"
+            placeholder = "lowerBerth"
         />
          <SeatPrice 
          name = "seaterPrice"
          required
          onChange = {handleChange}
-         placeholder = "Price in (&#8377;)"/>
+         placeholder = "Siting Price in (&#8377;)"/>
         </span>
         <br />
          <SubTitle>Photo Gallery (It's highly recommended to add atleast 2 Photos of the bus.)</SubTitle>

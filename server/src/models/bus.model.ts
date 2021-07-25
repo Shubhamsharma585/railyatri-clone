@@ -30,7 +30,7 @@ const busSchema = new Schema<IBus>({
         },
         seatsBooked: {
             type: Number,
-            required: true
+            default: 0
         },
         totalSleeperSeats: {
             type: Number,
