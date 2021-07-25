@@ -8,12 +8,12 @@ var busType;
     busType["sleeper"] = "sleeper";
 })(busType || (busType = {}));
 const busSchema = new mongoose_1.Schema({
-    companyName: {
+    companyNameId: {
         type: mongoose_1.Schema.Types.ObjectId,
         ref: 'user',
         required: true
     },
-    price: {
+    priceId: {
         type: mongoose_1.Schema.Types.ObjectId,
         ref: 'price',
         required: true
@@ -32,7 +32,15 @@ const busSchema = new mongoose_1.Schema({
             type: Number,
             required: true
         },
+<<<<<<< HEAD
         seatType: [
+=======
+        totalSleeperSeats: {
+            type: Number,
+            required: true
+        },
+        seatTypeId: [
+>>>>>>> a251af6ac3362bbff59f0998e9ed2296e272c77a
             {
                 type: mongoose_1.Schema.Types.ObjectId,
                 ref: 'seatType',

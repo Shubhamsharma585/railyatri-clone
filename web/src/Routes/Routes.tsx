@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { Route, Switch } from 'react-router-dom'
 import LandingPage from '../Components/landingPage/LandingPage'
 import Buses from "../Components/Buses/Buses"
@@ -17,6 +17,6 @@ export default function Routes() {
                     <Buses />
                 </Route>
             </Switch>
-        </div>
+        </div >
     )
 }

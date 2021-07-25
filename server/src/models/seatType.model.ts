@@ -10,9 +10,14 @@ enum seatBerth {
     lower = 'lower'
 }
 
+enum seatType {
+    sleeper = 'sleeper',
+    sitting = 'sitting'
+}
+
 const seatTypeSchema = new Schema ({
     seatNumber: {
-        type: Number || String,
+        type: String || Number,
         required: true
     },
     seatStatus: {
@@ -25,7 +30,16 @@ const seatTypeSchema = new Schema ({
         type: String,
         enum: Object.values(seatBerth),
         required: true
+    },
+    seatType: {
+        type: String,
+        enum: Object.values(seatType),
+        required: true
     }
+},
+{
+    timestamps: true,
+    versionKey: false
 });
 
 const SeatType = model('seatType', seatTypeSchema);

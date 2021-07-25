@@ -3,8 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
 const priceSchema = new mongoose_1.Schema({
     sleeper: Number,
-    luxory: Number,
-    ac: Number,
+    sitting: Number,
 }, {
     timestamps: true,
     versionKey: false

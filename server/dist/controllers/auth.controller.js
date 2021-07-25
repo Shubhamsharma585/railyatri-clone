@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.login = exports.register = void 0;
+exports.newToken = exports.login = exports.register = void 0;
 require('dotenv').config();
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const user_model_1 = __importDefault(require("../models/user.model"));
@@ -20,6 +20,7 @@ const secretKey = process.env.JWT_SECRET_KEY || '';
 const newToken = (user) => {
     return jsonwebtoken_1.default.sign({ id: user._id }, secretKey);
 };
+exports.newToken = newToken;
 const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let email = req.body.email;
     try {
