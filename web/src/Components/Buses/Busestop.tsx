@@ -1,21 +1,21 @@
 import React, {useState} from 'react'
 import Styles from "./Busestop.module.css"
-
+import Booking from "./Booking"
 
 
 function Busestop() { 
 
 
-    const [showseat, setShowseat] = useState <boolean> (false)
-
-
-    const select = () => {
-         setShowseat(showseat => !showseat)
+  
+    const [showseat, setShowseat] = useState<boolean>(false)
+    const selectseat = () => {
+          setShowseat(showseat => !showseat)
     }
 
 
 
     return (
+        <div>
         <div className={Styles.main}>
             <div style={{display:"flex", flexDirection:"row", justifyContent:"space-around"}}>
                 <div className={Styles.mainleft}>
@@ -57,8 +57,13 @@ function Busestop() {
                <p className={Styles.tag}>Amenities</p>
                <p className={Styles.tag}>Boarding/Dropping Points</p>
                <p className={Styles.tag} style={{borderRight:"0px"}}>Cancellation Policy</p>
-               <div className={Styles.select}><p >Select Seats</p></div> 
+               <div className={Styles.select} onClick={() => selectseat()}><p >Select Seats</p></div> 
             </div>
+
+           
+        </div>
+        {showseat && <Booking origin={origin} desti={"mumbai"} origintime={"17:00"} destitime={"22:00"}  seats={[]}  priceSleeper={"525"}
+                       priceSeater={"430"}/> }
         </div>
     )
 }
