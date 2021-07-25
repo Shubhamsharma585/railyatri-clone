@@ -16,14 +16,17 @@ interface Ibus {
 interface IBooking
 {
     origin: string,
-    desti: string,
+    desti: string, 
     origintime: string,
     destitime: string,
-    bus: Ibus
+    seats: [],
+    priceSleeper: string, 
+    priceSeater: string,
+ 
 }
+ 
 
-
-function Booking({origin, desti, origintime, destitime, bus} :IBooking) {
+function Booking({origin, desti, origintime, destitime, seats, priceSleeper, priceSeater } :IBooking) {
 
  
     const [board, setBoard] = useState<boolean>(true)
@@ -40,6 +43,8 @@ function Booking({origin, desti, origintime, destitime, bus} :IBooking) {
             return "lightgray"
         }
     }
+
+    console.log(seats)
  
     return (
         <div className={Styles.main}>
@@ -52,15 +57,16 @@ function Booking({origin, desti, origintime, destitime, bus} :IBooking) {
                       </div>                      
                   </div>
                   <div className={Styles.leftbox3}>
-                    <Seat numb={1} />
-                    <Seat numb={1}/> 
-                    <Seat numb={1}/>
-                    <Sleeper numb={2}/>
-                    <Seat numb={1}/>
-                    <Sleeper numb={2}/>
-                    <Seat numb={1}/>
-                    <Sleeper numb={2}/>
-                   
+                      {seats?.map((itm: any) => { return (itm.seatType == "sitting")? (
+                           <Seat 
+                           numb={itm.seatNumber}
+                           seatNumber={itm.seatNumber}
+                           seatStatus={itm.seatStatus}
+                           seatType={itm.seatType}
+                           seatId={itm._id}
+                           />
+                      ):("")
+                       })}  
                   </div>
                 </div>
                 <div className={Styles.leftbox}>
@@ -70,9 +76,18 @@ function Booking({origin, desti, origintime, destitime, bus} :IBooking) {
                   </div>     
                   </div>
                   <div className={Styles.leftbox3}>
-
+                  {seats?.map((itm: any) => { return (itm.seatType == "sleeper")? (
+                           <Sleeper 
+                           numb={itm.seatNumber}
+                           seatNumber={itm.seatNumber}
+                           seatStatus={itm.seatStatus}
+                           seatType={itm.seatType}
+                           seatId={itm._id}
+                           />
+                      ):("")
+                       })}  
                   </div>
-                </div>
+                </div> 
             </div>
             <div className={Styles.right}>
                 <div className={Styles.righttop}>
@@ -99,8 +114,15 @@ function Booking({origin, desti, origintime, destitime, bus} :IBooking) {
                          <p>{destitime}</p>
                     </div>  
                 )}
-
                 </div>
+
+                <div className={Styles.rightbottom1}>
+                  <p>{`₹${priceSeater}`}</p>
+                    <div className={Styles.cont}>
+                        <p>Make Payment</p>
+                    </div>
+                </div>
+
             </div>
             
         </div>

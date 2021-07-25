@@ -3,11 +3,11 @@ import IBus from '../Types/bus.types';
 
 const axios = Axios.create({
     baseURL: 'http://localhost:5000/',
-    // headers: {
-    //     "Content-Type": "application/json",
-    //     "Access-Control-Allow-Origin": "*",
-    //     "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
-    // },
+    headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+    },
 });
 
 // get buses

@@ -1,18 +1,45 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Styles from "./Sleeper.module.css"
-import sle from "../../Images/sleeper.png"
-
 
 
 interface ISeat
 {
     numb: number
+    seatNumber: string
+    seatStatus: string
+    seatType: string
+    seatId: string
 }
 
-function Sleeper({ numb } :ISeat ) {
+
+
+
+function Sleeper({ numb, seatNumber, seatStatus, seatType, seatId } :ISeat ) {
+
+
+const [bo, setBo] = useState<boolean>(false)
+const [clr, setClr] = useState<string>("white")
+
+const book = () => {
+    setBo(bo => !bo)
+    if(clr=="white")
+    {
+        setClr("green")
+    }
+    else{
+        setClr("white")
+    }   
+}
+
+
     return (
         <div className={Styles.main}>
-            <p>{numb}</p>
+              {(seatStatus != "vacant")? (
+                 <p  style={{backgroundColor:"gray"}}>{numb}</p>
+            ):(
+                <p  style={{backgroundColor:`${clr}`}} onClick={() => book()}>{numb}</p>
+            )}
+           
         </div>
     )
 }

@@ -9,15 +9,25 @@
     background: url("../../Images/seat.png");
     background-position: center;
     background-size: 30px;
+    /* background-color: rgb(5, 238, 25); */
     text-align: center;
     justify-content: center;
     padding-top: 2px;
-    float: left;
+    cursor: pointer;
+
+    float: left;  
+    margin: 15px 15px 15px 15px;
+}
+
+.main1
+{
+    background-color: rgb(1, 247, 22);
+    opacity: 1;
 }
 
 .main>p
 {
-    color: rgb(31, 30, 30);
+    color: rgb(31, 30, 30); 
     font-size: 12px;
     margin: 3px 0px 0px 0px;
 }
