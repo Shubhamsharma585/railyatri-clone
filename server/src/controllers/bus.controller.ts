@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express';
+import express, { Router, Request, Response } from 'express';
 
 import Bus from '../models/bus.model';
 import Price from '../models/price.model';
@@ -11,7 +11,7 @@ import protect from '../middlewares/protect';
 import authorize from '../middlewares/authorise';
 import IUser from '../types/user.types';
 
-const router = express();
+const router: Router = express();
 
 // get all buses details
 
@@ -75,7 +75,7 @@ router.post('/', protect, authorize(["admin", "owner"]), async(req: Request | an
     try {
         const user: IUser = req?.user;
         
-        const inpPrice: IPrice = req.body.price;
+        const inpPrice: IPrice = req.body.priceId;
         let seats = req.body.seats;
 
         let seatType: ISeatTypes[] = seats.seatTypeId;
@@ -145,12 +145,6 @@ router.patch('/:id/price', protect, authorize(["admin", "owner"]), async(req: Re
             message: err.message
         });
     }
-});
-
-//edit seatType
-
-router.patch('/:seatNum/seat', protect, authorize(["admin", "owner"]), async(req: Request, res: Response)=>{
-
 });
 
 router.delete('/:id', protect, authorize(["admin", "owner"]), async(req: Request, res: Response)=>{
