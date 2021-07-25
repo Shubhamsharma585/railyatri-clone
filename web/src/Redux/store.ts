@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
+import authReducer from './Auth/authReducer';
 import busreducer from './Buses/busreducer';
 
 const store = configureStore({
     reducer: {
-        bus: busreducer
+        bus: busreducer,
+        // auth: authReducer
     },
     devTools: (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ 
 });

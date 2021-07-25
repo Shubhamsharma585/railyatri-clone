@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom'
 import LandingPage from '../Components/landingPage/LandingPage'
 import Buses from "../Components/Buses/Buses"
+import SignIn from '../Components/AdminPanel/SignIn/SignIn';
 import { AdminPanel } from '../Components/AdminPanel/Admin';
 
 export default function Routes() {
@@ -18,6 +19,9 @@ export default function Routes() {
                     <Buses />
                 </Route>
                 <Route path='/admin'>
+                    <SignIn />
+                </Route>
+                <Route path='/addBus'>
                     <AdminPanel />
                 </Route>
             </Switch>
