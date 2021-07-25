@@ -78,8 +78,8 @@
     height: 100%;
     width: 100%;
     border-left: 1px solid lightgray;
-
-    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
 }
 
 .right
@@ -175,4 +175,17 @@
     margin-bottom: 0px;
     font-weight: 600;
     font-size: 15px;   
+}
+
+.corri
+{
+    border: 0px solid black;
+    height: 20px;
+    width: 100%;
+}
+.corri1
+{
+    border: 0px solid black;
+    height: 45px;
+    width: 100%;
 }

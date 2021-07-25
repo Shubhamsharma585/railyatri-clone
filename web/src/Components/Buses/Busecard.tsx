@@ -7,7 +7,7 @@ import Booking from "./Booking"
 
 interface IBusecard {
    company: string, 
-   catg: string[],
+   catg: string,
    origin: string,
    desti: string,
    origintime: string,
@@ -63,7 +63,7 @@ seats} : IBusecard)
             <div style={{display:"flex", flexDirection:"row", justifyContent:"space-around"}}>
                 <div className={Styles.mainleft}>
                 <h4 style={{margin:"5px"}}>{company}</h4>
-                <p style={{margin:"5px", color:"gray"}}>{catg}</p>
+                <p style={{margin:"5px", color:"gray"}}>{catg.toUpperCase()}</p>
              </div>
 
             <div className={Styles.mainmid}>

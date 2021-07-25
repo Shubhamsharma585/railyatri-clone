@@ -1,5 +1,5 @@
 
-
+ 
 .main
 {
     border: black 0px solid;
@@ -16,7 +16,7 @@
     cursor: pointer;
 
     float: left;  
-    margin: 15px 15px 15px 15px;
+    margin: 5px 10px 5px 10px;
 }
 
 .main1
